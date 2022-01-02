@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/btn_code_confirm.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/btn_login_bg.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/checkbox_bg.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/circle_bg.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/circle_gray.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/circle_primary.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/circle_white_stroke.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/custom_bg.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_active_dislike.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_active_like.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_add.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_add_ads.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_arrow_down2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_calendar.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_calender.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_call.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_call2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_camera.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_cancel.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_chat.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_chat2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_checked.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_clock2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_clock3.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_close.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_commision.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_contact_us.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_copy.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_correct.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_county_guide.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_credit_card.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_delete.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_dot_inside_a_circle.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_edit.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_edit2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_empty_heart.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_fast_forward.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_fav.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_fill_heart.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_filter.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_gallery.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_group.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_home2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_img_chooser.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_info.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_information.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_language.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_left_arrow.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_logout.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/ic_mail.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/line2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/rounded_color1.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/rounded_gray.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/rounded_primary.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/rounded_stroke_gray.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/rounded_white.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_btn_memory_selected.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_btn_primary.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_gray.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_stroke_gray.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_stroke_gray_bg.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_stroke_primary.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_rounded_white.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_stroke_primary.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/splash_gradient.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/tab_indicator.xml" value="0.2203125" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.28405797101449276" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_language.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_verification_code.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/category_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/catogry2_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/catogry_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/catogry_row3.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_department.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_offer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/android/Projects/Obi/app/src/main/res/layout/activity_home.xml" value="0.20102564102564102" />
+        <entry key="..\:/android/Projects/Obi/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/android/Projects/Obi/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/android/Projects/Obi/app/src/main/res/layout/fragment_home.xml" value="0.20102564102564102" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

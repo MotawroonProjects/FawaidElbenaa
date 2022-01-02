@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <data>
+
+        <variable
+            name="lang"
+            type="String" />
+      <variable
+          name="model"
+          type="com.fawaid_elbenaa.models.NewsModel.News" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray0">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/white"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            >
+            <LinearLayout
+                android:id="@+id/llBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_right_arrow"
+                    android:tint="@color/colorPrimary"
+                    android:padding="8dp"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:rotation='@{lang.equals("en")?180:0}'
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="@color/white"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="@string/news_detials"
+                    />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            >
+          <ScrollView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+android:fillViewport="true">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  >
+                  <FrameLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+                      <com.github.siyamed.shapeimageview.RoundedImageView
+                          android:id="@+id/image"
+                          image="@{model.image}"
+                          android:layout_width="match_parent"
+                          android:layout_height="200dp"
+                          android:layout_gravity="center"
+                          android:scaleType="fitXY"
+                          android:layout_margin="15dp"
+                          app:riv_corner_radius="10dp"
+                          />
+                  </FrameLayout>
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginStart="5dp"
+                      android:layout_marginEnd="5dp"
+                      android:clickable="false"
+                      android:longClickable="false"
+
+                      android:padding="8dp"
+                      android:text="@{model.date}"
+                      android:textColor="@color/color1"
+                      android:textSize="16sp" />
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginStart="5dp"
+                      android:layout_marginEnd="5dp"
+                      android:clickable="false"
+                      android:longClickable="false"
+
+                      android:padding="8dp"
+                      android:text="@{model.title}"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginStart="5dp"
+                      android:layout_marginEnd="5dp"
+                      android:clickable="false"
+                      android:longClickable="false"
+
+                      android:padding="8dp"
+                      android:text="@{model.desc}"
+                      android:textColor="@color/gray6"
+                      android:textSize="16sp" />
+              </LinearLayout>
+          </ScrollView>
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

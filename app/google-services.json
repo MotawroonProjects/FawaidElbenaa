@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "167744407315",
+    "project_id": "fawaidelbenaa",
+    "storage_bucket": "fawaidelbenaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167744407315:android:fb351e567f2a1745eafce6",
+        "android_client_info": {
+          "package_name": "com.fawaid_elbenaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167744407315-vuo8vm6pbdabhdd9mo7t32hnnqnq2m7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fawaid_elbenaa",
+            "certificate_hash": "6d13c263734470606533f721d340d2a15b653a54"
+          }
+        },
+        {
+          "client_id": "167744407315-86j4jqun0ljjmgljm3nts84hm73nv4pg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSV3u8T4xFi2vDUgGztuHvMrd5NKp5aJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167744407315-86j4jqun0ljjmgljm3nts84hm73nv4pg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
