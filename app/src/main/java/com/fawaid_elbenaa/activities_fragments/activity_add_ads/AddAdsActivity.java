@@ -284,46 +284,6 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        binding.spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                if (i == 0) {
-                    typeModelList.clear();
-                    TypeModel typeModel = new TypeModel();
-                    typeModel.setId(0);
-                    typeModel.setTitle(getString(R.string.ch_types));
-                    typeModelList.add(typeModel);
-                    model.setType_id(0);
-
-                    spinnerTypeAdapter.notifyDataSetChanged();
-                    if (itemAddAdsList.size() > 0) {
-                        removeItems();
-                    }
-                } else {
-                    model.setType_id(typeModelList.get(i).getId());
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        binding.checkboxSwear.setOnClickListener(view -> {
-            if (binding.checkboxSwear.isChecked()) {
-                model.setSwear(true);
-                Intent intent = new Intent(this, SwearActivity.class);
-                startActivity(intent);
-            } else {
-                model.setSwear(false);
-
-            }
-
-            binding.setModel(model);
-        });
         binding.flUploadImage.setOnClickListener(view -> {
             openSheet();
         });
@@ -348,7 +308,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         binding.btnSend.setOnClickListener(view -> checkDataValid());
         getDepartment();
         getGovernorate();
-        getTypes(model.getCategory_id());
+        //getTypes(model.getCategory_id());
         getItems(model.getCategory_id());
 
     }
@@ -691,7 +651,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody title_part = Common.getRequestBodyText(model.getName());
         RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
         RequestBody governorate_id_part = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
-        RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+        //RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
         RequestBody price_part = Common.getRequestBodyText(String.valueOf(model.getPrice()));
         RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
 
@@ -710,7 +670,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
 
         Api.getService(Tags.base_url)
-                .addAdsWithoutVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, type_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage(), map)
+                .addAdsWithoutVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage(), map)
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -764,7 +724,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody title_part = Common.getRequestBodyText(model.getName());
         RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
         RequestBody governorate_id_part = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
-        RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+        //RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
         RequestBody price_part = Common.getRequestBodyText(String.valueOf(model.getPrice()));
         RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
 
@@ -775,7 +735,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         MultipartBody.Part video_part = Common.getMultiPartVideo(this, videoUri, "video");
 
         Api.getService(Tags.base_url)
-                .addAdsWithVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, type_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage())
+                .addAdsWithVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage())
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -830,7 +790,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody title_part = Common.getRequestBodyText(model.getName());
         RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
         RequestBody governorate_id = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
-        RequestBody type_id = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+       // RequestBody type_id = Common.getRequestBodyText(String.valueOf(model.getType_id()));
         RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
 
         RequestBody price_part = Common.getRequestBodyText(model.getPrice());
@@ -840,7 +800,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         MultipartBody.Part main_image_part = Common.getMultiPartImage(this, Uri.parse(imagesUriList.get(0)), "main_image");
 
         Api.getService(Tags.base_url)
-                .addAdsWithoutVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id, type_id, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage())
+                .addAdsWithoutVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage())
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -894,7 +854,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody title_part = Common.getRequestBodyText(model.getName());
         RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
         RequestBody governorate_id_part = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
-        RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+//        RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
         RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
 
         RequestBody price_part = Common.getRequestBodyText(model.getPrice());
@@ -915,7 +875,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
 
         Api.getService(Tags.base_url)
-                .addAdsWithVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, type_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage(), map)
+                .addAdsWithVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage(), map)
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {

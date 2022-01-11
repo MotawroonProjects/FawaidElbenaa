@@ -65,7 +65,7 @@ public class FireBaseMessaging extends FirebaseMessagingService {
             if (notification_type.equals("message_send")) {
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 String current_class = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
-                if (current_class.equals("com.obiapp.activities_fragments.activity_chat.ChatActivity")) {
+                if (current_class.equals("com.fawaid_elbenaa.activities_fragments.activity_chat.ChatActivity")) {
                     if (to_user_id.equals(my_id)) {
 
                         String id = String.valueOf(map.get("id"));
@@ -102,7 +102,7 @@ public class FireBaseMessaging extends FirebaseMessagingService {
             } else if (notification_type.equals("admin_message_send")) {
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 String current_class = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
-                if (current_class.equals("com.obiapp.activities_fragments.activity_chat_admin.ChatAdminActivity")) {
+                if (current_class.equals("com.fawaid_elbenaa.activities_fragments.activity_chat_admin.ChatAdminActivity")) {
                     if (to_user_id.equals(my_id)) {
 
                         String id = String.valueOf(map.get("id"));
