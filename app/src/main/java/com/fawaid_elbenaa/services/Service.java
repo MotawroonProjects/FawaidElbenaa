@@ -13,6 +13,7 @@ import com.fawaid_elbenaa.models.MessageDataModel;
 import com.fawaid_elbenaa.models.NewsModel;
 import com.fawaid_elbenaa.models.NotificationDataModel;
 import com.fawaid_elbenaa.models.OtherProfileDataModel;
+import com.fawaid_elbenaa.models.PackageDataModel;
 import com.fawaid_elbenaa.models.PlaceDataModel;
 import com.fawaid_elbenaa.models.PlaceGeocodeData;
 import com.fawaid_elbenaa.models.PlaceMapDetailsData;
@@ -530,5 +531,8 @@ public interface Service {
                                   @Part List<MultipartBody.Part> images
 
     );
+
+    @GET("api/packages")
+    Call<PackageDataModel> getPackages();
 }
 

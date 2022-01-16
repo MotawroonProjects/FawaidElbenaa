@@ -165,4 +165,10 @@
     <string name="title">العنوان</string>
     <string name="select_location_on_map">حدد الموقع على الخريطه</string>
     <string name="select_location">اختر الموقع</string>
+    <string name="left_on_your_package">متبقي على باقتك</string>
+    <string name="day">يوم</string>
+    <string name="choose_your_package">اختر باقتك للاستمتاع وقدم خدماتك لملاين المشتركين الآن</string>
+    <string name="subscribe">إشترك</string>
+    <string name="iqd">دينار كويتى</string>
+    <string name="packages_and_subscriptions">باقات وإشتراكات</string>
 </resources>

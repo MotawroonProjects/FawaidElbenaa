@@ -25,6 +25,7 @@ import com.fawaid_elbenaa.activities_fragments.activity_contact_us.ContactUsActi
 import com.fawaid_elbenaa.activities_fragments.activity_google.activity_shop_query.ShopsQueryActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_home.HomeActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_language.LanguageActivity;
+import com.fawaid_elbenaa.activities_fragments.activity_packages.PackagesActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_web_view.WebViewActivity;
 import com.fawaid_elbenaa.adapters.google_adapters.PlaceCategoryAdapter;
 import com.fawaid_elbenaa.databinding.FragmentMenuBinding;
@@ -70,9 +71,12 @@ public class Fragment_Menu extends Fragment {
 
         activity = (HomeActivity) getActivity();
         preferences = Preferences.getInstance();
+        userModel = preferences.getUserData(activity);
+
         Paper.init(activity);
         lang = Paper.book().read("lang", "ar");
         binding.setLang(lang);
+        binding.setModel(userModel);
 
         binding.llLanguage.setOnClickListener(v -> {
             navigateToLanguageActivity();
@@ -97,6 +101,15 @@ public class Fragment_Menu extends Fragment {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity.getPackageName())));
             } catch (android.content.ActivityNotFoundException anfe) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + activity.getPackageName())));
+            }
+        });
+        binding.llPackge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (userModel != null) {
+                    Intent intent = new Intent(activity, PackagesActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

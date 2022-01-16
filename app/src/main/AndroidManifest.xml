@@ -26,6 +26,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".activities_fragments.activity_packages.PackagesActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
             android:name="com.fawaid_elbenaa.activities_fragments.activity_sponsor.SponsorActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
@@ -161,11 +165,11 @@
         <activity
             android:name="com.fawaid_elbenaa.activities_fragments.activity_sign_up.SignUpActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name="com.fawaid_elbenaa.activities_fragments.activity_login.LoginActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name="com.fawaid_elbenaa.activities_fragments.activity_splash.SplashActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
@@ -176,7 +180,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activities_fragments.activity_pay.PayActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat.ServiceUploadAttachment" />
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat_admin.ServiceUploadAttachmentAdmin" />
         <service

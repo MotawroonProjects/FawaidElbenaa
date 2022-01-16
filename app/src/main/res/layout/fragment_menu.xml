@@ -7,7 +7,10 @@
         <variable
             name="lang"
             type="String" />
-
+<import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.fawaid_elbenaa.models.UserModel" />
     </data>
 
     <ScrollView
@@ -187,7 +190,39 @@
                         android:layout_marginBottom="12dp"
                         android:background="@drawable/line2"
                         android:layerType="software" />
+                    <LinearLayout
+                        android:id="@+id/llPackge"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:visibility='@{model!=null?View.VISIBLE:View.GONE,default=gone}'
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_contact" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:text="@string/packages_and_subscriptions"
+                            android:textColor="@color/gray13"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:visibility='@{model!=null?View.VISIBLE:View.GONE,default=gone}'
+                        android:background="@drawable/line2"
+                        android:layerType="software" />
                     <LinearLayout
                         android:id="@+id/llRate"
                         android:layout_width="match_parent"
