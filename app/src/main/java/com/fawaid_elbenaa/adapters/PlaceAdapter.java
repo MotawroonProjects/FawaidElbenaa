@@ -50,10 +50,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myHolder.binding.setModel(list.get(position));
             if (list.get(position).getImages().size()>0){
                 String url = Tags.IMAGE_URL + list.get(position).getImages().get(0).getImage();
-                Picasso.get().load(Uri.parse(url)).placeholder(R.drawable.logo2).into(myHolder.binding.image);
+                Picasso.get().load(Uri.parse(url)).placeholder(R.drawable.logo).into(myHolder.binding.image);
 
             }else {
-                Picasso.get().load(R.drawable.logo2).into(myHolder.binding.image);
+                Picasso.get().load(R.drawable.logo).into(myHolder.binding.image);
             }
 
             myHolder.itemView.setOnClickListener(v -> {

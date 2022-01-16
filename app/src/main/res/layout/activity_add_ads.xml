@@ -99,6 +99,7 @@
 
 
                     <FrameLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:background="@drawable/small_rounded_stroke_gray"
@@ -447,6 +448,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <CheckBox
+                        android:visibility="gone"
                         android:id="@+id/checkboxSwear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

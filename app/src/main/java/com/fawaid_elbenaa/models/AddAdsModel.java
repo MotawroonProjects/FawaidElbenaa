@@ -17,7 +17,7 @@ import java.util.List;
 public class AddAdsModel extends BaseObservable implements Serializable {
     private int category_id;
     private int governate_id;
-    private int type_id;
+    //private int type_id;
     private String name;
     private String price;
     private String details;
@@ -25,7 +25,6 @@ public class AddAdsModel extends BaseObservable implements Serializable {
     private double lat;
     private double lng;
     private boolean hasExtraItems;
-    private boolean swear = false;
     private String video_url;
     private List<String> imagesList;
     private List<ItemAddAds> itemAddAdsList;
@@ -41,14 +40,12 @@ public class AddAdsModel extends BaseObservable implements Serializable {
 
         if (category_id != 0 &&
                 governate_id != 0 &&
-                type_id != 0 &&
                 !name.isEmpty() &&
                 !price.isEmpty() &&
                 !details.isEmpty() &&
                 !address.isEmpty() &&
                 imagesList.size() > 0 &&
-                imagesList.size() <= 5 &&
-                swear
+                imagesList.size() <= 5
 
         ) {
 
@@ -117,14 +114,6 @@ public class AddAdsModel extends BaseObservable implements Serializable {
 
             }
 
-            if (type_id == 0) {
-                Toast.makeText(context, R.string.ch_type, Toast.LENGTH_SHORT).show();
-
-            }
-
-            if (!swear) {
-                Toast.makeText(context, R.string.accept_terms, Toast.LENGTH_SHORT).show();
-            }
 
             if (price.isEmpty()) {
                 error_price.set(context.getString(R.string.field_required));
@@ -148,7 +137,6 @@ public class AddAdsModel extends BaseObservable implements Serializable {
     public AddAdsModel() {
         category_id = 0;
         governate_id = 0;
-        type_id = 0;
         name = "";
         price = "";
         details = "";
@@ -158,7 +146,6 @@ public class AddAdsModel extends BaseObservable implements Serializable {
         video_url = "";
         imagesList = new ArrayList<>();
         hasExtraItems = false;
-        swear = false;
         itemAddAdsList = new ArrayList<>();
     }
 
@@ -285,19 +272,4 @@ public class AddAdsModel extends BaseObservable implements Serializable {
         return valid;
     }
 
-    public boolean isSwear() {
-        return swear;
-    }
-
-    public void setSwear(boolean swear) {
-        this.swear = swear;
-    }
-
-    public int getType_id() {
-        return type_id;
-    }
-
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
-    }
 }

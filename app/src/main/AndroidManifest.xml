@@ -141,7 +141,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="obiapp.motaweron.com"
+                    android:host="fawaid_elbenaa.motaweron.com"
                     android:pathPrefix="/api/product_details/"
                     android:scheme="http" />
             </intent-filter>
