@@ -24,6 +24,7 @@ public class LoginModel extends BaseObservable {
             error_phone.set(context.getString(R.string.field_required));
             return false;
         }
+
     }
 
     public LoginModel() {
