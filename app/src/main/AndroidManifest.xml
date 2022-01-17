@@ -184,6 +184,7 @@
             android:name=".activities_fragments.activity_pay.PayActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat.ServiceUploadAttachment" />
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat_admin.ServiceUploadAttachmentAdmin" />
         <service

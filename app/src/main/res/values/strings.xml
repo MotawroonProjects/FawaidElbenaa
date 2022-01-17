@@ -172,5 +172,6 @@
     <string name="subscribe">Subscribe</string>
     <string name="iqd">KWD</string>
     <string name="packages_and_subscriptions">Packages and subscriptions</string>
+    <string name="sub_packge">Subcribe In Package</string>
 
 </resources>

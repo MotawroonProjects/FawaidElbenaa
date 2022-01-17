@@ -36,6 +36,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.fawaid_elbenaa.models.UserModel;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
@@ -302,15 +303,20 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         });
 
 
-
         binding.llBack.setOnClickListener(view -> back());
 
-        binding.btnSend.setOnClickListener(view -> checkDataValid());
+        binding.btnSend.setOnClickListener(view -> {
+            if (userModel.getData().isCan_post()) {
+                checkDataValid();
+            } else {
+                Toast.makeText(AddAdsActivity.this, getResources().getString(R.string.sub_packge), Toast.LENGTH_LONG).show();
+            }
+        });
         getDepartment();
         getGovernorate();
         //getTypes(model.getCategory_id());
         getItems(model.getCategory_id());
-
+        getProfile();
     }
 
     private void addItems() {
@@ -360,16 +366,16 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                                     }
                                 } else {
-                                  //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
 
                                 if (response.code() == 500) {
-                                  //  Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                   // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -388,9 +394,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                     //   Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //   Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                      //  Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //  Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -426,16 +432,16 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                                     }
                                 } else {
-                               //     Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //     Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
 
                                 if (response.code() == 500) {
-                                   // Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                  //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -454,9 +460,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                     //   Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //   Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                      //  Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //  Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -490,16 +496,16 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                                     }
                                 } else {
-                                //    Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
 
                                 if (response.code() == 500) {
-                                   // Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                   // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -518,9 +524,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    //    Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //    Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                     //   Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //   Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -685,12 +691,12 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             }
 
                             if (response.code() == 500) {
-                          //      Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //      Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             }
                             {
                                 Log.e("mmmmmmmmmm", response.code() + "__" + response.errorBody());
 
-                            //    Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -703,11 +709,11 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 Log.e("mmmmmmmmmm", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.e("ccccc", t.getMessage());
 
-                                 //   Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
@@ -750,12 +756,12 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             }
 
                             if (response.code() == 500) {
-                          //      Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //      Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             }
                             {
                                 Log.e("mmmmmmmmmm", response.code() + "__" + response.errorBody());
 
-                              //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -768,11 +774,11 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 Log.e("mmmmmmmmmm", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.e("ccccc", t.getMessage());
 
-                                  //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
@@ -790,7 +796,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody title_part = Common.getRequestBodyText(model.getName());
         RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
         RequestBody governorate_id = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
-       // RequestBody type_id = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+        // RequestBody type_id = Common.getRequestBodyText(String.valueOf(model.getType_id()));
         RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
 
         RequestBody price_part = Common.getRequestBodyText(model.getPrice());
@@ -815,12 +821,12 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             }
 
                             if (response.code() == 500) {
-                            //    Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             }
                             {
                                 Log.e("mmmmmmmmmm", response.code() + "__" + response.errorBody());
 
-                              //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -833,11 +839,11 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 Log.e("mmmmmmmmmm", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                //    Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.e("ccccc", t.getMessage());
 
-                                  //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
@@ -890,12 +896,12 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             }
 
                             if (response.code() == 500) {
-                             //   Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             }
                             {
                                 Log.e("mmmmmmmmmm", response.code() + "__" + response.errorBody());
 
-                               // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -908,11 +914,11 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                                 Log.e("mmmmmmmmmm", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                //    Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.e("ccccc", t.getMessage());
 
-                                  //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
@@ -1135,7 +1141,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onFailure(Call<PlaceMapDetailsData> call, Throwable t) {
                         try {
 
-                      //      Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
+                            //      Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
 
                         }
@@ -1176,7 +1182,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     @Override
                     public void onFailure(Call<PlaceGeocodeData> call, Throwable t) {
                         try {
-                         //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
+                            //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
 
                         }
@@ -1395,13 +1401,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                                     }
                                 } else {
-                           //         Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //         Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 }
 
 
                             } else {
-                             //   Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -1409,11 +1415,11 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             dialog.dismiss();
 
                             if (response.code() == 500) {
-                             //   Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                             } else {
-                              //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 try {
 
@@ -1433,9 +1439,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                         //           Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    //           Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                         //           Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    //           Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -1443,6 +1449,69 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                         }
                     }
                 });
+    }
+
+    private void getProfile() {
+        try {
+            Api.getService(Tags.base_url)
+                    .getProfile("Bearer " + userModel.getData().getToken(), userModel.getData().getId())
+                    .enqueue(new Callback<UserModel>() {
+                        @Override
+                        public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                            if (response.isSuccessful()) {
+
+                                if (response.body() != null && response.body().getStatus() == 200) {
+
+                                    updateData(response.body());
+                                } else {
+                                    //        Toast.makeText(ProfileProductsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            } else {
+
+                                if (response.code() == 500) {
+                                    //      Toast.makeText(ProfileProductsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+
+                                } else {
+                                    //    Toast.makeText(ProfileProductsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                    try {
+
+                                        Log.e("error", response.code() + "_" + response.errorBody().string());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserModel> call, Throwable t) {
+                            try {
+
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        //      Toast.makeText(ProfileProductsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        //    Toast.makeText(ProfileProductsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void updateData(UserModel body) {
+        userModel = body;
+
     }
 
 

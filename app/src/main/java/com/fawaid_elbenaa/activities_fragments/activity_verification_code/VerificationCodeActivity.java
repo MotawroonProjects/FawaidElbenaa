@@ -199,7 +199,7 @@ public class VerificationCodeActivity extends AppCompatActivity {
                         dialog.dismiss();
                         if (response.isSuccessful()&&response.body()!=null) {
                             if (response.body().getStatus()==200){
-                                Log.e("ddldldl",response.body().getData().getToken());
+//                                Log.e("ddldldl",response.body().getData().getToken());
                                 preferences.create_update_userdata(VerificationCodeActivity.this, response.body());
                                 navigateToHomeActivity();
                             }else  if (response.body().getStatus()==404){

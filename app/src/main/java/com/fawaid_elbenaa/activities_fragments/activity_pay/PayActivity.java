@@ -51,6 +51,7 @@ public class PayActivity extends AppCompatActivity {
     }
 
     private void setUpWebView() {
+        binding.progBar.setVisibility(View.GONE);
         binding.webView.getSettings().setJavaScriptEnabled(true);
         binding.webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         binding.webView.getSettings().setBuiltInZoomControls(false);

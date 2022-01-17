@@ -8,6 +8,7 @@ import com.fawaid_elbenaa.models.CommentDataModel;
 import com.fawaid_elbenaa.models.CouponDataModel;
 import com.fawaid_elbenaa.models.DepartmentDataModel;
 import com.fawaid_elbenaa.models.GovernorateDataModel;
+import com.fawaid_elbenaa.models.InvoiceModel;
 import com.fawaid_elbenaa.models.ItemAddAdsDataModel;
 import com.fawaid_elbenaa.models.MessageDataModel;
 import com.fawaid_elbenaa.models.NewsModel;
@@ -534,5 +535,17 @@ public interface Service {
 
     @GET("api/packages")
     Call<PackageDataModel> getPackages();
+
+    @FormUrlEncoded
+    @POST("api/payment")
+    Call<InvoiceModel> payPackge(@Header("Authorization") String token,
+                                 @Field(value = "user_id") String user_id,
+                                 @Field(value = "package_id") String package_id
+    );
+
+    @GET("api/getProfile")
+    Call<UserModel> getProfile(@Header("Authorization") String bearer_token,
+                               @Query("user_id") int user_id
+    );
 }
 
