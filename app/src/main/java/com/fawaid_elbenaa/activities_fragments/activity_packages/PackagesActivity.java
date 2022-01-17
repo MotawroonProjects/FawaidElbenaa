@@ -99,7 +99,7 @@ public class PackagesActivity extends AppCompatActivity {
     }
 
     private String getDays() {
-        Log.e("ldldll",userModel.getData().getId()+"");
+     //   Log.e("ldldll",userModel.getData().getId()+"");
         String days = "0";
         Calendar calendar = Calendar.getInstance();
         if(userModel.getData().getPackage_date()!=null){
