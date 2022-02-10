@@ -225,7 +225,6 @@ public interface Service {
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithVideoWithList(@Header("Authorization") String user_token,
                                                  @Part("category_id") RequestBody category_id,
-                                                 @Part("governorate_id") RequestBody governorate_id,
                                                  @Part("title") RequestBody title,
                                                  @Part("price") RequestBody price,
                                                  @Part("address") RequestBody address,
@@ -244,7 +243,6 @@ public interface Service {
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithoutVideoWithoutList(@Header("Authorization") String user_token,
                                                        @Part("category_id") RequestBody category_id,
-                                                       @Part("governorate_id") RequestBody governorate_id,
                                                        @Part("title") RequestBody title,
                                                        @Part("price") RequestBody price,
                                                        @Part("address") RequestBody address,
@@ -261,7 +259,6 @@ public interface Service {
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithoutVideoWithList(@Header("Authorization") String user_token,
                                                     @Part("category_id") RequestBody category_id,
-                                                    @Part("governorate_id") RequestBody governorate_id,
                                                     @Part("title") RequestBody title,
                                                     @Part("price") RequestBody price,
                                                     @Part("address") RequestBody address,
@@ -279,7 +276,6 @@ public interface Service {
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithVideoWithoutList(@Header("Authorization") String user_token,
                                                     @Part("category_id") RequestBody category_id,
-                                                    @Part("governorate_id") RequestBody governorate_id,
                                                     @Part("title") RequestBody title,
                                                     @Part("price") RequestBody price,
                                                     @Part("address") RequestBody address,

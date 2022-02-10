@@ -39,7 +39,6 @@ public class AddAdsModel extends BaseObservable implements Serializable {
     public boolean isDataValid(Context context) {
 
         if (category_id != 0 &&
-                governate_id != 0 &&
                 !name.isEmpty() &&
                 !price.isEmpty() &&
                 !details.isEmpty() &&
@@ -109,10 +108,7 @@ public class AddAdsModel extends BaseObservable implements Serializable {
 
             }
 
-            if (governate_id == 0) {
-                Toast.makeText(context, R.string.ch_governorate, Toast.LENGTH_SHORT).show();
 
-            }
 
 
             if (price.isEmpty()) {
