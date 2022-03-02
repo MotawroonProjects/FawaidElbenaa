@@ -159,7 +159,7 @@ public class Fragment_Home extends Fragment {
         });
         getProducts(null);
         binding.cardStore.setOnClickListener(view -> {
-            String url = Tags.base_url+"app-setting#2";
+            String url = "https://faweeth.store";
             navigateToWebViewActivity(url);
         });
       /*  binding.swipeRefresh.setOnRefreshListener(() -> {
