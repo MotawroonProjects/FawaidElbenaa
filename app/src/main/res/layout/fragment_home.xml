@@ -17,6 +17,7 @@
 
             />
     </data>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested"
         android:layout_width="match_parent"
@@ -27,160 +28,157 @@
 
 
         >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/flPager"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            >
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
+            <FrameLayout
+                android:id="@+id/flPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="200dp"
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab"
-                android:layout_width="wrap_content"
-                android:layout_height="8dp"
-                android:layout_gravity="bottom|start"
-                android:layout_margin="10dp"
-                app:tabBackground="@drawable/tab_indicator"
-                app:tabGravity="fill"
-                app:tabIndicatorHeight="0dp"
-                app:tabMaxWidth="7dp"
-                app:tabMode="scrollable" />
+                >
 
-            <ProgressBar
-                android:id="@+id/progBar1"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="8dp"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="10dp"
+                    app:tabBackground="@drawable/tab_indicator"
+                    app:tabGravity="fill"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMaxWidth="7dp"
+                    app:tabMode="scrollable" />
+
+                <ProgressBar
+                    android:id="@+id/progBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/gray2"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/rounded_white"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_search"
+                        app:tint="@color/gray4" />
+
+                    <EditText
+                        android:id="@+id/edtSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:hint="@string/search"
+                        android:imeOptions="actionSearch"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray4"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </FrameLayout>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="3dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/gray2"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/rounded_white"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_search"
-                    app:tint="@color/gray4" />
-
-                <EditText
-                    android:id="@+id/edtSearch"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/transparent"
-                    android:hint="@string/search"
-                    android:imeOptions="actionSearch"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray4"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </FrameLayout>
 
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/gray1"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true">-->
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
 
 
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="vertical">-->
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvtitle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/color2"
-                        app:contentPadding="8dp">
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="@string/fwaid_store"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="3dp"
+                        android:src="@drawable/logo"
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                        />
 
-                            >
+                </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:orientation="horizontal">
+            </androidx.cardview.widget.CardView>
 
-                                <View
-                                    android:layout_width="2dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:background="@color/colorPrimary" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:paddingStart="5dp"
-                                    android:paddingEnd="5dp"
-                                    android:text="@string/departments"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp" />
-                            </LinearLayout>
+            <!--        <FrameLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:background="@color/gray1"-->
+            <!--            android:clickable="true"-->
+            <!--            android:focusable="true">-->
 
 
-                            <FrameLayout
-                                android:id="@+id/flSlider"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp">
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:orientation="vertical">-->
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recViewCategory"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/color2"
+                app:contentPadding="8dp">
 
 
-                                <ProgressBar
-                                    android:id="@+id/progBarCategory"
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:layout_gravity="center"
-                                    android:visibility="gone" />
-                            </FrameLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
                     <LinearLayout
-                        android:id="@+id/llnew"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -200,47 +198,97 @@
                             android:layout_gravity="center"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"
-                            android:text="@string/the_most_recent"
+                            android:text="@string/departments"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>
 
+
                     <FrameLayout
-                        android:id="@+id/flProducts"
+                        android:id="@+id/flSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recView"
+                            android:id="@+id/recViewCategory"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                            />
+
                         <ProgressBar
-                            android:id="@+id/progBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tvNoData"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/progBarCategory"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_gravity="center"
-                            android:text="@string/no_data_to_show"
-                            android:textColor="@color/black"
-                            android:textSize="17sp"
                             android:visibility="gone" />
-
-
                     </FrameLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-<!--                </LinearLayout>-->
+            <LinearLayout
+                android:id="@+id/llnew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text="@string/the_most_recent"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/progBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_data_to_show"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:visibility="gone" />
 
 
-<!--        </FrameLayout>-->
+            </FrameLayout>
 
-    </LinearLayout>
+            <!--                </LinearLayout>-->
+
+
+            <!--        </FrameLayout>-->
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </layout>

@@ -22,6 +22,7 @@ import com.fawaid_elbenaa.R;
 import com.fawaid_elbenaa.activities_fragments.activity_filter.FilterActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_home.HomeActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_product_details.ProductDetailsActivity;
+import com.fawaid_elbenaa.activities_fragments.activity_web_view.WebViewActivity;
 import com.fawaid_elbenaa.adapters.Category_Adapter;
 import com.fawaid_elbenaa.adapters.HomeSliderAdapter;
 import com.fawaid_elbenaa.adapters.ProductAdapter;
@@ -157,7 +158,10 @@ public class Fragment_Home extends Fragment {
             }
         });
         getProducts(null);
-
+        binding.cardStore.setOnClickListener(view -> {
+            String url = Tags.base_url+"app-setting#2";
+            navigateToWebViewActivity(url);
+        });
       /*  binding.swipeRefresh.setOnRefreshListener(() -> {
             String query = binding.edtSearch.getText().toString();
             if (query.isEmpty()) {
@@ -521,5 +525,9 @@ public class Fragment_Home extends Fragment {
 
 
     }
-
+    private void navigateToWebViewActivity(String url){
+        Intent intent = new Intent(activity, WebViewActivity.class);
+        intent.putExtra("url",url);
+        startActivity(intent);
+    }
 }

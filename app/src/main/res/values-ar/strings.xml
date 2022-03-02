@@ -172,4 +172,5 @@
     <string name="iqd">دينار كويتى</string>
     <string name="packages_and_subscriptions">باقات وإشتراكات</string>
     <string name="sub_packge">اشترك فى باقه</string>
+    <string name="fwaid_store">متجر فوائض</string>
 </resources>

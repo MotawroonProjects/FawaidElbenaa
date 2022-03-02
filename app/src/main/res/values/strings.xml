@@ -173,5 +173,6 @@
     <string name="iqd">KWD</string>
     <string name="packages_and_subscriptions">Packages and subscriptions</string>
     <string name="sub_packge">Subcribe In Package</string>
+    <string name="fwaid_store">Fawaied Store</string>
 
 </resources>
