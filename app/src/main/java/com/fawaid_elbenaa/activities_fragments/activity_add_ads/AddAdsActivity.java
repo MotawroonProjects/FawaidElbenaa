@@ -169,6 +169,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         imagesUriList = new ArrayList<>();
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(this);
+     //   Log.e("bbbbbbbbb", ""+userModel.getData().getToken());
+
         Paper.init(this);
         lang = Paper.book().read("lang", "ar");
         binding.setModel(model);
@@ -313,10 +315,10 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
         getDepartment();
-        getGovernorate();
+        //getGovernorate();
         //getTypes(model.getCategory_id());
         getItems(model.getCategory_id());
-        getProfile();
+        //getProfile();
     }
 
     private void addItems() {
@@ -676,7 +678,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
 
         Api.getService(Tags.base_url)
-                .addAdsWithoutVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage(), map)
+                .addAdsWithoutVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage(), map)
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -741,7 +743,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         MultipartBody.Part video_part = Common.getMultiPartVideo(this, videoUri, "video");
 
         Api.getService(Tags.base_url)
-                .addAdsWithVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage())
+                .addAdsWithVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage())
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -805,8 +807,10 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         RequestBody lng_part = Common.getRequestBodyText(String.valueOf(model.getLng()));
         MultipartBody.Part main_image_part = Common.getMultiPartImage(this, Uri.parse(imagesUriList.get(0)), "main_image");
 
+
+        Log.e("bbbbbbbbb", ""+userModel.getData().getToken());
         Api.getService(Tags.base_url)
-                .addAdsWithoutVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage())
+                .addAdsWithoutVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage())
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -881,7 +885,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
 
         Api.getService(Tags.base_url)
-                .addAdsWithVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, governorate_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage(), map)
+                .addAdsWithVideoWithList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage(), map)
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
@@ -1453,6 +1457,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
     private void getProfile() {
         try {
+            Log.e("ffffff", ""+userModel.getData().getToken());
+
             Api.getService(Tags.base_url)
                     .getProfile("Bearer " + userModel.getData().getToken(), userModel.getData().getId())
                     .enqueue(new Callback<UserModel>() {
