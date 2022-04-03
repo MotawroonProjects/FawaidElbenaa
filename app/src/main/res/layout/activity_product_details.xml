@@ -482,6 +482,8 @@
                         android:layout_height="180dp"
                         android:name="com.fawaid_elbenaa.activities_fragments.FragmentMapTouchListener"
                         android:layout_marginTop="8dp"
+                        android:visibility="gone"
+
                         />
 
                     <androidx.cardview.widget.CardView
