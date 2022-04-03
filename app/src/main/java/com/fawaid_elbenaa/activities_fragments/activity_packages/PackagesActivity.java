@@ -195,7 +195,11 @@ public class PackagesActivity extends AppCompatActivity {
                             }
 
                         } else {
-
+                            try {
+                                Log.e("ttyyty",response.code()+"--"+response.errorBody().string());
+                            } catch (IOException e) {
+                               // e.printStackTrace();
+                            }
                             if (response.code() == 500) {
                                 //  Toast.makeText(VerificationCodeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             } else {

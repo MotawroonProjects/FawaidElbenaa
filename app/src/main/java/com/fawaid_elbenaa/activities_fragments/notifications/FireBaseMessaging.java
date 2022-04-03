@@ -99,7 +99,9 @@ public class FireBaseMessaging extends FirebaseMessagingService {
                 }
 
 
-            } else if (notification_type.equals("admin_message_send")) {
+            }
+
+            else if (notification_type.equals("admin_message_send")) {
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 String current_class = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
                 if (current_class.equals("com.fawaid_elbenaa.activities_fragments.activity_chat_admin.ChatAdminActivity")) {

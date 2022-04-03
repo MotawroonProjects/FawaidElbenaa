@@ -16,6 +16,10 @@
             type="String"
 
             />
+
+        <variable
+            name="url"
+            type="String" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -37,7 +41,7 @@
             <FrameLayout
                 android:id="@+id/flPager"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
 
                 >
 
@@ -107,14 +111,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardStore"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="3dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+
                 app:cardElevation="2dp">
 
                 <LinearLayout
@@ -124,17 +128,36 @@
                     android:orientation="horizontal"
                     android:padding="3dp">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="@string/fwaid_store"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/tvtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/fwaid_store"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@{url}"
+
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
 
                     <ImageView
                         android:id="@+id/image"
@@ -143,8 +166,7 @@
                         android:padding="3dp"
                         android:src="@drawable/logo"
 
-
-                        />
+                        app:tint="@color/black" />
 
                 </LinearLayout>
 
@@ -167,6 +189,7 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/color2"
                 app:contentPadding="8dp">
 

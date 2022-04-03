@@ -96,7 +96,7 @@ public class Fragment_Home extends Fragment {
             public void run() {
                 handler.post(Update);
             }
-        }, 3000, 3000);
+        }, 1000, 1000);
     }
 
     @Override
