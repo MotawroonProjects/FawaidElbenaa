@@ -217,7 +217,7 @@ public class Fragment_Home extends Fragment {
 
                             switch (response.code()) {
                                 case 500:
-                                   // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
                                     break;
 
                                 default:
@@ -241,10 +241,10 @@ public class Fragment_Home extends Fragment {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //   Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else if (t.getMessage().toLowerCase().contains("socket") || t.getMessage().toLowerCase().contains("canceled")) {
                                 } else {
-                                  //  Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -295,14 +295,14 @@ public class Fragment_Home extends Fragment {
 
                             }
                         } else {
-                        //    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         binding.progBar.setVisibility(View.GONE);
                         //binding.swipeRefresh.setRefreshing(false);
 
                         if (response.code() == 500) {
-                           // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                         } else {
@@ -327,11 +327,11 @@ public class Fragment_Home extends Fragment {
                         if (t.getMessage() != null) {
                             Log.e("error", t.getMessage());
                             if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                             //   Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
                             } else if (t.getMessage().toLowerCase().contains("socket") || t.getMessage().toLowerCase().contains("canceled")) {
 
                             } else {
-                             //   Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -347,7 +347,7 @@ public class Fragment_Home extends Fragment {
     }
 
     private void getCategoryData() {
-       // binding.cardView.setVisibility(View.VISIBLE);
+        // binding.cardView.setVisibility(View.VISIBLE);
 
         binding.progBarCategory.setVisibility(View.VISIBLE);
 
@@ -362,7 +362,7 @@ public class Fragment_Home extends Fragment {
                         Log.e("dlldldlld", response.code() + "dldlldldld");
 
                         if (response.body().getData().size() > 0) {
-                         //   binding.cardView.setVisibility(View.VISIBLE);
+                            //   binding.cardView.setVisibility(View.VISIBLE);
 
                             categoryList.clear();
                             categoryList.addAll(response.body().getData());
@@ -386,11 +386,11 @@ public class Fragment_Home extends Fragment {
                     }
 
                     if (response.code() == 500) {
-                       // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                     } else {
-                       // Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -407,9 +407,9 @@ public class Fragment_Home extends Fragment {
                     if (t.getMessage() != null) {
                         Log.e("error", t.getMessage());
                         if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                         //   Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                            //   Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
                         } else {
-                           // Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                             Log.e("error:", t.getMessage());
                         }
                     }
@@ -489,9 +489,9 @@ public class Fragment_Home extends Fragment {
                                     Log.e("error", response.code() + "_" + response.errorBody().string());
 
                                     if (response.code() == 500) {
-                                 //       Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                        //       Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
                                     } else {
-                                   //     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                        //     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                     }
 
                                 } catch (IOException e) {
@@ -511,9 +511,9 @@ public class Fragment_Home extends Fragment {
                                     Log.e("error", t.getMessage() + "__");
 
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //       Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                        //       Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                     } else {
-                                   //     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                        //     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             } catch (Exception e) {
@@ -529,9 +529,10 @@ public class Fragment_Home extends Fragment {
 
 
     }
-    private void navigateToWebViewActivity(String url){
+
+    private void navigateToWebViewActivity(String url) {
         Intent intent = new Intent(activity, WebViewActivity.class);
-        intent.putExtra("url",url);
+        intent.putExtra("url", url);
         startActivity(intent);
     }
 }
