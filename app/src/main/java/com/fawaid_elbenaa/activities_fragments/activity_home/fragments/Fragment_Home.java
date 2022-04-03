@@ -97,6 +97,7 @@ public class Fragment_Home extends Fragment {
                 handler.post(Update);
             }
         }, 1000, 1000);
+
     }
 
     @Override
@@ -158,6 +159,7 @@ public class Fragment_Home extends Fragment {
             }
         });
         getProducts(null);
+        binding.setUrl("https://faweeth.store");
         binding.cardStore.setOnClickListener(view -> {
             String url = "https://faweeth.store";
             navigateToWebViewActivity(url);
@@ -254,6 +256,8 @@ public class Fragment_Home extends Fragment {
     }
 
     private void updateSliderUi(List<SliderModel.Data> data) {
+        NUM_PAGES = data.size();
+
         sliderModelList.addAll(data);
         sliderAdapter.notifyDataSetChanged();
     }
@@ -343,7 +347,7 @@ public class Fragment_Home extends Fragment {
     }
 
     private void getCategoryData() {
-        binding.cardView.setVisibility(View.VISIBLE);
+       // binding.cardView.setVisibility(View.VISIBLE);
 
         binding.progBarCategory.setVisibility(View.VISIBLE);
 
@@ -358,7 +362,7 @@ public class Fragment_Home extends Fragment {
                         Log.e("dlldldlld", response.code() + "dldlldldld");
 
                         if (response.body().getData().size() > 0) {
-                            binding.cardView.setVisibility(View.VISIBLE);
+                         //   binding.cardView.setVisibility(View.VISIBLE);
 
                             categoryList.clear();
                             categoryList.addAll(response.body().getData());

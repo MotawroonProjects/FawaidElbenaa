@@ -330,25 +330,34 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <FrameLayout
                     android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:src="@drawable/ic_add_ads"
+                    android:background="@drawable/circle_primary"
 
-                    android:tint="@color/white"
-                    app:fabSize="normal"
                     app:layout_anchorGravity="center_horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias=".947"
+                    android:maxWidth="50dp"
+
                     tools:ignore="UnusedAttribute">
 
-                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:gravity="center"
+                        android:text="@string/advertise"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </FrameLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

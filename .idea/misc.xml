@@ -6,14 +6,18 @@
         <entry key="..\:/FawaidElbenaa/app/src/main/res/drawable/ic_checked_circle.xml" value="0.15885416666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.1390625" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_add_guide.xml" value="0.1390625" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_department_details.xml" value="0.12291666666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_guide_details.xml" value="0.1" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_language.xml" value="0.27291666666666664" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_news_detials.xml" value="0.12291666666666666" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_news_detials.xml" value="0.1" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_packages.xml" value="0.38924930491195553" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_product_details.xml" value="0.1" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_product_details.xml" value="0.12" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_profile_products.xml" value="0.12291666666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_sign_up.xml" value="0.14270833333333333" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_web_view.xml" value="0.14270833333333333" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/catogry_row.xml" value="0.13541666666666666" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/comment_row.xml" value="0.12291666666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_menu.xml" value="0.27291666666666664" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_profile.xml" value="0.27291666666666664" />
