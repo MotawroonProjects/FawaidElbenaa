@@ -87,14 +87,14 @@ public class VerificationCodeActivity extends AppCompatActivity {
         });
         binding.btnConfirm.setOnClickListener(view -> {
             String code = binding.edtCode.getText().toString().trim();
-            login();
-//            if (!code.isEmpty()) {
-//                binding.edtCode.setError(null);
-//                Common.CloseKeyBoard(this, binding.edtCode);
-//                checkValidCode(code);
-//            } else {
-//                binding.edtCode.setError(getString(R.string.field_required));
-//            }
+            //login();
+            if (!code.isEmpty()) {
+                binding.edtCode.setError(null);
+                Common.CloseKeyBoard(this, binding.edtCode);
+                checkValidCode(code);
+            } else {
+                binding.edtCode.setError(getString(R.string.field_required));
+            }
 
         });
         sendSmsCode();
