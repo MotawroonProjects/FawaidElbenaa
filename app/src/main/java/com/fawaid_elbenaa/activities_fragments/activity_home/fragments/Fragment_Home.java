@@ -1,6 +1,7 @@
 package com.fawaid_elbenaa.activities_fragments.activity_home.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -173,7 +174,7 @@ public class Fragment_Home extends Fragment {
 
         });*/
 
-        sliderAdapter = new HomeSliderAdapter(sliderModelList, activity);
+        sliderAdapter = new HomeSliderAdapter(sliderModelList, activity,this);
         binding.tab.setupWithViewPager(binding.pager);
         binding.pager.setAdapter(sliderAdapter);
 
@@ -534,5 +535,12 @@ public class Fragment_Home extends Fragment {
         Intent intent = new Intent(activity, WebViewActivity.class);
         intent.putExtra("url", url);
         startActivity(intent);
+    }
+
+    public void openlink(String link) {
+if(link!=null){
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+    startActivity(intent);
+}
     }
 }
