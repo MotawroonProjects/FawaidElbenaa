@@ -97,16 +97,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/small_stroke_primary"
                     android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:paddingTop="5dp"
+                    android:paddingEnd="8dp"
                     android:paddingBottom="5dp"
-                    android:text='@{model.is_active.equals("yes")?@string/sold:@string/publish}'
-                    android:layout_marginBottom="8dp"
-                    />
+                    android:text='@{model.is_active.equals("1")?@string/sold:@string/publish}'
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp" />
 
 
             </LinearLayout>

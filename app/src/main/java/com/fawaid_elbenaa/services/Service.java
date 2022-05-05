@@ -272,7 +272,6 @@ public interface Service {
     );
 
 
-
     @Multipart
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithVideoWithoutList(@Header("Authorization") String user_token,
@@ -544,6 +543,12 @@ public interface Service {
     @GET("api/getProfile")
     Call<UserModel> getProfile(@Header("Authorization") String bearer_token,
                                @Query("user_id") int user_id
+    );
+
+    @FormUrlEncoded
+    @POST("api/activeProduct")
+    Call<StatusResponse> changeAdStatus(@Header("Authorization") String token,
+                                        @Field(value = "product_id") String product_id
     );
 }
 

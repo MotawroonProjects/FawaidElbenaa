@@ -223,6 +223,63 @@ public class MyAdsActivity extends AppCompatActivity {
     }
 
     public void changeStatus(ProductModel productModel, int adapterPosition) {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+        dialog.show();
 
+        Api.getService(Tags.base_url)
+                .changeAdStatus("Bearer "+userModel.getData().getToken(),productModel.getId()+"")
+                .enqueue(new Callback<StatusResponse>() {
+                    @Override
+                    public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful()) {
+                            if (response.body()!=null&&response.body().getStatus()==200){
+                                if (productModel.getIs_active().equals("1")){
+                                    productModel.setIs_active("0");
+                                }else {
+                                    productModel.setIs_active("1");
+
+                                }
+                                productModelList.set(adapterPosition,productModel);
+                                adapter.notifyItemChanged(adapterPosition);
+                            }else {
+
+                            }
+                        } else {
+                            dialog.dismiss();
+                            try {
+                                Log.e("error", response.code() + "__" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (response.code() == 500) {
+                                //  Toast.makeText(MyAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<StatusResponse> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //           Toast.makeText(MyAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //         Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (Exception e) {
+                            Log.e("Error", e.getMessage() + "__");
+                        }
+                    }
+                });
     }
 }

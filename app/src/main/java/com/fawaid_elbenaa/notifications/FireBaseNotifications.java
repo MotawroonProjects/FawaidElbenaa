@@ -91,7 +91,7 @@ public class FireBaseNotifications extends FirebaseMessagingService {
         } else if (notification_type.equals("ads")) {
             intent = new Intent(this, ProductDetailsActivity.class);
             String ads_id = map.get("ad_id");
-            intent.putExtra("product_id", ads_id);
+            intent.putExtra("product_id", Integer.parseInt(ads_id));
 
         } else {
             intent = new Intent(this, HomeActivity.class);
