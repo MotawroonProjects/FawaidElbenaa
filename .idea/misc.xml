@@ -6,23 +6,15 @@
         <entry key="..\:/FawaidElbenaa/app/src/main/res/drawable/ic_checked_circle.xml" value="0.15885416666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.1390625" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_add_guide.xml" value="0.1390625" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_department_details.xml" value="0.12291666666666666" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_guide_details.xml" value="0.1" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_language.xml" value="0.27291666666666664" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_news_detials.xml" value="0.1" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_packages.xml" value="0.38924930491195553" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_product_details.xml" value="0.12" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_profile_products.xml" value="0.12291666666666666" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_sign_up.xml" value="0.14270833333333333" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/activity_web_view.xml" value="0.14270833333333333" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/catogry_row.xml" value="0.13541666666666666" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/comment_row.xml" value="0.12291666666666666" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_home.xml" value="0.2360939431396786" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_menu.xml" value="0.27291666666666664" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/fragment_profile.xml" value="0.27291666666666664" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/package_row.xml" value="0.27291666666666664" />
-        <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/slider_row.xml" value="0.23958333333333334" />
         <entry key="..\:/FawaidElbenaa/app/src/main/res/layout/toolbar.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/btn_code_confirm.xml" value="0.2203125" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/btn_login_bg.xml" value="0.2203125" />
@@ -94,6 +86,8 @@
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_language.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_packages.xml" value="0.33" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_product_details.xml" value="0.25" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_splash.xml" value="0.22" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_verification_code.xml" value="0.20416666666666666" />
@@ -105,6 +99,8 @@
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_offer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/my_product_row.xml" value="0.25" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/product_row2.xml" value="0.17083333333333334" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/drawable/ic_nav_notification.xml" value="0.2203125" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/drawable/msg_left_bg.xml" value="0.2203125" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.20416666666666666" />

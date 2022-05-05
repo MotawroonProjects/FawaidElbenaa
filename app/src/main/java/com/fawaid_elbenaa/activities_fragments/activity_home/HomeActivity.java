@@ -115,10 +115,18 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         CheckPermission();
-
         initView();
+        getDataFromIntent();
 
 
+    }
+
+    private void getDataFromIntent() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("firebase")) {
+            Intent intent1 = new Intent(this, NotificationActivity.class);
+            startActivity(intent1);
+        }
     }
 
     private void initView() {

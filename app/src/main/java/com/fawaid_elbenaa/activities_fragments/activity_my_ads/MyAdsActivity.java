@@ -221,4 +221,8 @@ public class MyAdsActivity extends AppCompatActivity {
         }
         finish();
     }
+
+    public void changeStatus(ProductModel productModel, int adapterPosition) {
+
+    }
 }

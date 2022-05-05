@@ -172,7 +172,10 @@
     <string name="iqd">دينار كويتى</string>
     <string name="packages_and_subscriptions">باقات وإشتراكات</string>
     <string name="sub_packge">اشترك فى باقه</string>
+    <string name="recharge_package">عفوا! من فضلك قم بالاشتراك في باقة جديدة</string>
     <string name="fwaid_store">للتسوق من متجر فوائض</string>
     <string name="phone">رقم الجوال</string>
     <string name="advertise">اعلن</string>
+    <string name="publish">نشر</string>
+    <string name="sold">تم البيع</string>
 </resources>

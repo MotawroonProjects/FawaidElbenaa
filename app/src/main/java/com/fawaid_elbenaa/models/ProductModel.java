@@ -5,39 +5,40 @@ import java.util.List;
 
 public class ProductModel implements Serializable {
 
-   private int id;
-   private String title;
-   private String desc;
-   private String main_image;
-   private String video;
-   private int user_id;
-   private int category_id;
-   private int sub_category_id;
-   private double price;
-   private double old_price;
-   private String address;
-   private double latitude;
-   private double longitude;
-   private String counts;
-   private String have_offer;
-   private String offer_type;
-   private int offer_value;
-   private String offer_started_at;
-   private String offer_finished_at;
-   private int rating_value;
-   private String is_shown;
-   private String created_at;
-   private String updated_at;
-   private int time_in_days_from_creating;
-   private String is_favorite;
-   private String is_report;
-   private UserModel.Data user;
-   private Category category;
-   private SubCategory sub_category;
-   private List<ProductImageModel> product_images;
-   private List<ProductDetail> product_details;
-   private GovernorateModel governorate;
-   private ProductType product_type;
+    private int id;
+    private String title;
+    private String desc;
+    private String main_image;
+    private String video;
+    private int user_id;
+    private int category_id;
+    private int sub_category_id;
+    private double price;
+    private double old_price;
+    private String address;
+    private double latitude;
+    private double longitude;
+    private String counts;
+    private String have_offer;
+    private String offer_type;
+    private int offer_value;
+    private String offer_started_at;
+    private String offer_finished_at;
+    private int rating_value;
+    private String is_shown;
+    private String created_at;
+    private String updated_at;
+    private int time_in_days_from_creating;
+    private String is_favorite;
+    private String is_active;
+    private String is_report;
+    private UserModel.Data user;
+    private Category category;
+    private SubCategory sub_category;
+    private List<ProductImageModel> product_images;
+    private List<ProductDetail> product_details;
+    private GovernorateModel governorate;
+    private ProductType product_type;
 
     public int getId() {
         return id;
@@ -123,6 +124,14 @@ public class ProductModel implements Serializable {
         return created_at;
     }
 
+    public String getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(String is_active) {
+        this.is_active = is_active;
+    }
+
     public String getUpdated_at() {
         return updated_at;
     }
@@ -179,8 +188,7 @@ public class ProductModel implements Serializable {
         return counts;
     }
 
-    public static class Category implements Serializable
-    {
+    public static class Category implements Serializable {
         private int id;
         private String title;
         private String desc;
@@ -230,8 +238,7 @@ public class ProductModel implements Serializable {
 
     }
 
-    public static class SubCategory implements Serializable
-    {
+    public static class SubCategory implements Serializable {
         private int id;
         private String title;
         private String desc;
@@ -279,8 +286,7 @@ public class ProductModel implements Serializable {
         }
     }
 
-    public static class ProductDetail implements Serializable
-    {
+    public static class ProductDetail implements Serializable {
         private int id;
         private String icon;
         private String title;
@@ -318,12 +324,9 @@ public class ProductModel implements Serializable {
         }
 
 
-
-
     }
 
-    public static class Type implements Serializable
-    {
+    public static class Type implements Serializable {
         private int id;
         private String title;
         private String created_at;
@@ -346,8 +349,7 @@ public class ProductModel implements Serializable {
         }
     }
 
-    public static class ProductType implements Serializable
-    {
+    public static class ProductType implements Serializable {
         private int id;
         private int type_id;
         private int product_id;
@@ -379,8 +381,6 @@ public class ProductModel implements Serializable {
             return type;
         }
     }
-
-
 
 
 }

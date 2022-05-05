@@ -173,8 +173,11 @@
     <string name="iqd">KWD</string>
     <string name="packages_and_subscriptions">Packages and subscriptions</string>
     <string name="sub_packge">Subcribe In Package</string>
+    <string name="recharge_package">Sorry! recharge package</string>
     <string name="fwaid_store">For Shopping From Fawaied Store</string>
     <string name="phone">Phone</string>
     <string name="advertise">advertise</string>
+    <string name="publish">Publish</string>
+    <string name="sold">Sold</string>
 
 </resources>

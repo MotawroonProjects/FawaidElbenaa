@@ -272,6 +272,7 @@ public interface Service {
     );
 
 
+
     @Multipart
     @POST("api/addProduct")
     Call<StatusResponse> addAdsWithVideoWithoutList(@Header("Authorization") String user_token,
@@ -287,6 +288,7 @@ public interface Service {
                                                     @Part List<MultipartBody.Part> images
 
     );
+
 
     @FormUrlEncoded
     @POST("api/makeActionOnCoupon")

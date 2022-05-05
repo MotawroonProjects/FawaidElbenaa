@@ -308,11 +308,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         binding.llBack.setOnClickListener(view -> back());
 
         binding.btnSend.setOnClickListener(view -> {
-            if (userModel.getData().isCan_post()) {
-                checkDataValid();
-            } else {
-                Toast.makeText(AddAdsActivity.this, getResources().getString(R.string.sub_packge), Toast.LENGTH_LONG).show();
-            }
+            checkDataValid();
+
         });
         getDepartment();
         //getGovernorate();
@@ -684,7 +681,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -749,7 +752,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -816,7 +825,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -891,7 +906,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());

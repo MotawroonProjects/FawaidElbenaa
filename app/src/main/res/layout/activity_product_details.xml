@@ -839,34 +839,53 @@
 
 
         <FrameLayout
-            android:id="@+id/flChatViaWhatsApp"
+            android:id="@+id/flAction"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/color3"
-            android:visibility="gone"
-
+            android:visibility="invisible"
             >
 
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/flChatViaWhatsApp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility='@{model.is_active.equals("1")?View.VISIBLE:View.GONE,default=gone}'
+                >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_whatsapp2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/chat_via_whatsapp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_whatsapp2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/chat_via_whatsapp"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
-            </LinearLayout>
+                android:text="@string/sold"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility='@{model.is_active.equals("1")?View.GONE:View.VISIBLE}' />
         </FrameLayout>
 
     </LinearLayout>

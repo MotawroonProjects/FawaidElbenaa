@@ -187,15 +187,7 @@
 
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat.ServiceUploadAttachment" />
         <service android:name="com.fawaid_elbenaa.activities_fragments.activity_chat_admin.ServiceUploadAttachmentAdmin" />
-        <service
-            android:name="com.fawaid_elbenaa.activities_fragments.notifications.FireBaseMessaging"
-            android:enabled="true"
-            android:exported="false"
-            android:stopWithTask="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -203,6 +195,17 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <service
+            android:name=".notifications.FireBaseNotifications"
+            android:exported="false"
+            android:stopWithTask="false" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".notifications.BroadcastCancelNotification"/>
     </application>
 
 </manifest>

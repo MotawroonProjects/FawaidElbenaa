@@ -103,16 +103,17 @@ public class PackagesActivity extends AppCompatActivity {
         String days = "0";
         Calendar calendar = Calendar.getInstance();
         if(userModel.getData().getPackage_date()!=null){
+            Log.e("ddddd",userModel.getData().getPackage_date());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         try {
             Date expiredDate = format.parse(userModel.getData().getPackage_date());
             Date nowDate = calendar.getTime();
-            Log.e("date", expiredDate.toString() + "__" + expiredDate.getTime() + "___" + nowDate.toString() + "" + nowDate.getTime());
             if (expiredDate.getTime() > nowDate.getTime()) {
                 long daysMill = 1000 * 60 * 60 * 24;
                 long diff = expiredDate.getTime() - nowDate.getTime();
                 long d = diff / daysMill;
-                days = String.valueOf(d);
+                days = String.valueOf(d+1);
+
             }
         } catch (ParseException e) {
             e.printStackTrace();
