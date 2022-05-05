@@ -153,7 +153,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         });
 
         binding.flCall.setOnClickListener(view -> {
-            if (productModel.getIs_active().equals("yes")) {
+            if (productModel.getIs_active().equals("1")) {
                 String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
                 startActivity(intent);
@@ -164,7 +164,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         });
 
         binding.iconWhatsApp.setOnClickListener(view -> {
-            if (productModel.getIs_active().equals("yes")) {
+            if (productModel.getIs_active().equals("1")) {
                 String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
                 String url = "https://api.whatsapp.com/send?phone=" + phone;
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -178,7 +178,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         });
 
         binding.flChatViaWhatsApp.setOnClickListener(v -> {
-            if (productModel.getIs_active().equals("yes")) {
+            if (productModel.getIs_active().equals("1")) {
                 String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
                 String url = "https://api.whatsapp.com/send?phone=" + phone;
                 Intent i = new Intent(Intent.ACTION_VIEW);
