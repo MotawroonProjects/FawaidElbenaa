@@ -842,7 +842,7 @@
             android:id="@+id/flAction"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/color3"
+            android:background='@{model.is_active.equals("1")?@color/color3:@color/colorred}'
             android:visibility="invisible"
             >
 

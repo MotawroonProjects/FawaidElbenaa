@@ -179,5 +179,7 @@
     <string name="advertise">advertise</string>
     <string name="publish">Publish</string>
     <string name="sold">Sold</string>
+    <string name="Edit">Edit</string>
+    <string name="suc_upload">Success Upload</string>
 
 </resources>

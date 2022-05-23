@@ -128,6 +128,94 @@ public class AddAdsModel extends BaseObservable implements Serializable {
             return false;
         }
     }
+    public boolean isData2Valid(Context context) {
+
+        if (category_id != 0 &&
+                !name.isEmpty() &&
+                !price.isEmpty() &&
+                !details.isEmpty() &&
+                !address.isEmpty()
+
+        ) {
+
+            error_name.set(null);
+            error_price.set(null);
+            error_details.set(null);
+            error_address.set(null);
+            if (hasExtraItems) {
+                if (itemAddAdsList.size() > 0) {
+
+                    if (isDataItemValid(context)) {
+                        return true;
+
+
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+
+                return true;
+
+
+            }
+
+        } else {
+
+            if (name.isEmpty()) {
+                error_name.set(context.getString(R.string.field_required));
+
+            } else {
+                error_name.set(null);
+
+            }
+
+
+            if (details.isEmpty()) {
+                error_details.set(context.getString(R.string.field_required));
+
+            } else {
+                error_details.set(null);
+
+            }
+
+            if (address.isEmpty()) {
+                error_address.set(context.getString(R.string.field_required));
+
+            } else {
+                error_address.set(null);
+
+            }
+
+
+
+            if (category_id == 0) {
+                Toast.makeText(context, R.string.ch_dept, Toast.LENGTH_SHORT).show();
+
+            }
+
+
+
+
+            if (price.isEmpty()) {
+                error_price.set(context.getString(R.string.field_required));
+
+            } else {
+                error_price.set(null);
+
+            }
+
+            if (hasExtraItems && itemAddAdsList.size() > 0) {
+                if (isDataItemValid(context)) {
+
+                }
+            }
+
+            return false;
+        }
+    }
 
 
     public AddAdsModel() {

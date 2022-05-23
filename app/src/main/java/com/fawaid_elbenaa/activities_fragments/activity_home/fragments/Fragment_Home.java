@@ -65,7 +65,7 @@ public class Fragment_Home extends Fragment {
     private List<SingleCategoryModel> categoryList;
     private Category_Adapter categoryAdapter;
     private String id;
-    private String query = null;
+    private String query = "";
     private int current_page = 0, NUM_PAGES;
 
     public static Fragment_Home newInstance() {
@@ -174,7 +174,7 @@ public class Fragment_Home extends Fragment {
 
         });*/
 
-        sliderAdapter = new HomeSliderAdapter(sliderModelList, activity,this);
+        sliderAdapter = new HomeSliderAdapter(sliderModelList, activity, this);
         binding.tab.setupWithViewPager(binding.pager);
         binding.pager.setAdapter(sliderAdapter);
 
@@ -538,9 +538,13 @@ public class Fragment_Home extends Fragment {
     }
 
     public void openlink(String link) {
-if(link!=null){
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-    startActivity(intent);
-}
+        if (link != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            startActivity(intent);
+        }
+    }
+
+    public void search() {
+        search("");
     }
 }

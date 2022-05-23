@@ -64,7 +64,10 @@ public class MyProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
                 myAdsActivity.changeStatus(list.get(myHolder.getAdapterPosition()),myHolder.getAdapterPosition());
             });
-
+            myHolder.binding.tvEdit.setOnClickListener(view -> {
+                MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
+                myAdsActivity.edit(list.get(myHolder.getAdapterPosition()),myHolder.getAdapterPosition());
+            });
 
         }
 

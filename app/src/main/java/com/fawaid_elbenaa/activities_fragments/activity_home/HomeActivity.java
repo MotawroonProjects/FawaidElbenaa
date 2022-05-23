@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         binding.fab.setOnClickListener(v -> {
             if (userModel != null) {
                 Intent intent = new Intent(this, AddAdsActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,100);
             } else {
                 Toast.makeText(this, getString(R.string.please_sign_in_or_sign_up), Toast.LENGTH_SHORT).show();
             }
@@ -863,6 +863,13 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         if (requestCode == 1255 && resultCode == RESULT_OK) {
             startLocationUpdate();
 
+        }
+        else if(requestCode==100&&resultCode==RESULT_OK){
+            if(fragment_home!=null){
+                fragment_home.search();
+            }
+            if(!fragment_home.isVisible()){
+            displayFragmentMain();}
         }
 
 

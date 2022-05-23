@@ -90,22 +90,46 @@
 
 
                 </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/tvAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/small_stroke_primary"
+        android:paddingStart="8dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="5dp"
+        android:text='@{model.is_active.equals("1")?@string/sold:@string/publish}'
+        android:textColor="@color/colorred"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tvEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/small_rounded_primary"
+        android:paddingStart="8dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:paddingBottom="5dp"
+        android:text="@string/Edit"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/tvAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/small_stroke_primary"
-                    android:paddingStart="8dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="5dp"
-                    android:text='@{model.is_active.equals("1")?@string/sold:@string/publish}'
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp" />
+</LinearLayout>
+
 
 
             </LinearLayout>

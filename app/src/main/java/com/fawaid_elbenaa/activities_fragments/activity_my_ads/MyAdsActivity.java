@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.fawaid_elbenaa.R;
+import com.fawaid_elbenaa.activities_fragments.activity_add_ads.AddAdsActivity;
 import com.fawaid_elbenaa.activities_fragments.activity_product_details.ProductDetailsActivity;
 import com.fawaid_elbenaa.adapters.MyProductAdapter;
 import com.fawaid_elbenaa.databinding.ActivityMyAdsBinding;
@@ -281,5 +282,12 @@ public class MyAdsActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void edit(ProductModel productModel, int adapterPosition) {
+        Intent intent=new Intent(this, AddAdsActivity.class);
+        intent.putExtra("data",productModel);
+        startActivity(intent);
+
     }
 }

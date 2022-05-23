@@ -1,5 +1,6 @@
 package com.fawaid_elbenaa.services;
 
+
 import com.fawaid_elbenaa.adapters.SingleCommentDataModel;
 import com.fawaid_elbenaa.models.AdminMessageDataModel;
 import com.fawaid_elbenaa.models.AdminRoomDataModel;
@@ -38,9 +39,11 @@ import com.fawaid_elbenaa.models.google_models.PlaceDetailsModel;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -549,6 +552,31 @@ public interface Service {
     @POST("api/activeProduct")
     Call<StatusResponse> changeAdStatus(@Header("Authorization") String token,
                                         @Field(value = "product_id") String product_id
+    );
+
+    @Multipart
+    @POST("api/editProduct")
+    Observable<Response<StatusResponse>> editAdd(@Header("Authorization") String user_token,
+                                                 @Part("product_id") RequestBody product_id,
+                                                 @Part("category_id") RequestBody category_id,
+                                                 @Part("title") RequestBody title,
+                                                 @Part("price") RequestBody price,
+                                                 @Part("address") RequestBody address,
+                                                 @Part("latitude") RequestBody latitude,
+                                                 @Part("longitude") RequestBody longitude,
+                                                 @Part("desc") RequestBody desc,
+                                                 @Part MultipartBody.Part main_image,
+                                                 @Part MultipartBody.Part vedio,
+                                                 @Part List<MultipartBody.Part> images
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/editProduct")
+    Observable<Response<StatusResponse>> deleteImages(@Header("Authorization") String user_token,
+                                                 @Field("product_id") String product_id,
+                                                 @Field("ids[]") List<Integer> ids
+
     );
 }
 

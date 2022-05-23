@@ -178,7 +178,7 @@ public class PackagesActivity extends AppCompatActivity {
     }
 
     private void payPackage() {
-
+Log.e("dldlld","Bearer " + userModel.getData().getToken());
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
@@ -293,6 +293,7 @@ Log.e(";llllll",e.toString());
     }
 
     private void updateData(UserModel body) {
+        body.getData().setToken(userModel.getData().getToken());
         userModel = body;
         binding.setDays(getDays());
 

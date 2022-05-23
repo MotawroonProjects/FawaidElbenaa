@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.text.Html;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -83,7 +84,7 @@ public class FireBaseNotifications extends FirebaseMessagingService {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setSound(Uri.parse(sound_Path), AudioManager.STREAM_NOTIFICATION);
         notificationCompat.setContentTitle(title);
-        notificationCompat.setStyle(new NotificationCompat.BigTextStyle().bigText(body));
+        notificationCompat.setStyle(new NotificationCompat.BigTextStyle().bigText(Html.fromHtml(body)));
         Intent intent = null;
         if (notification_type.equals("package")) {
             intent = new Intent(this, PackagesActivity.class);

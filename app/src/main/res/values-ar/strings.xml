@@ -178,4 +178,6 @@
     <string name="advertise">اعلن</string>
     <string name="publish">نشر</string>
     <string name="sold">تم البيع</string>
+    <string name="Edit">تعديل</string>
+    <string name="suc_upload">Success Upload</string>
 </resources>
