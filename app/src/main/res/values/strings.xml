@@ -181,5 +181,6 @@
     <string name="sold">Sold</string>
     <string name="Edit">Edit</string>
     <string name="suc_upload">Success Upload</string>
+    <string name="update_suc">Update Success</string>
 
 </resources>

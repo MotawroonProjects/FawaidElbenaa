@@ -144,7 +144,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     private List<TypeModel> typeModelList;
     private SpinnerDepartmentAdapter spinnerDepartmentAdapter;
     private SpinnerTypeAdapter spinnerTypeAdapter;
-    private List<Integer> imageDelteIds;
+    private List<String> imageDelteIds;
     private ImageAdsAdapter imageAdsAdapter;
     private boolean isVideoAvailable = false;
     private List<ItemAddAds> itemAddAdsList;
@@ -156,6 +156,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     private List<GovernorateModel> governorateModelList;
     private SpinnerGovernorateAdapter spinnerGovernorateAdapter;
     private ProductModel productModel;
+    private int next = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -452,7 +453,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         }
         if (productModel.getVideo() != null) {
             Log.e("llll", productModel.getVideo());
-            Uri uri = Uri.parse(productModel.getVideo());
+            Uri uri = Uri.parse(Tags.IMAGE_URL+productModel.getVideo());
             new VideoTask().execute(uri);
         }
         if (productModel.getProduct_images() != null && productModel.getProduct_images().size() > 0) {
@@ -1447,7 +1448,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
             if (imagesUriList.get(adapterPosition).contains("http")) {
                 for (int i = 0; i < productModel.getProduct_images().size(); i++) {
                     if (productModel.getProduct_images().get(i).getName().equals(imagesUriList.get(adapterPosition).replaceAll(Tags.IMAGE_URL, ""))) {
-                        imageDelteIds.add(productModel.getProduct_images().get(i).getId());
+                        imageDelteIds.add(productModel.getProduct_images().get(i).getId()+"");
                     }
                 }
             }
@@ -1471,7 +1472,16 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         @Override
         protected Long doInBackground(Uri... uris) {
             uri = uris[0];
-            retriever.setDataSource(AddAdsActivity.this, uris[0]);
+            try {
+                retriever.setDataSource(AddAdsActivity.this, uris[0]);
+
+            }
+            catch (Exception e){
+                Log.e("slslsl",e.toString());
+
+                retriever.setDataSource( uris[0].toString(), new HashMap<String, String>());
+
+            }
             String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
             long duration = Long.parseLong(time) / 1000;
             retriever.release();
@@ -1660,12 +1670,15 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
             main_image_part = Common.getMultiPartImage(this, uri, "main_image");
         }
         MultipartBody.Part video_part = null;
-        if (videoUri != null) {
+        if (videoUri != null&&!model.getVideo_url().isEmpty()) {
             video_part = Common.getMultiPartVideo(this, videoUri, "video");
+        }
+        if(imageDelteIds.size()==0){
+            imageDelteIds=null;
         }
         Observable<Response<StatusResponse>> Observable1 = Api.get2Service(Tags.base_url).editAdd("Bearer " + userModel.getData().getToken(), product_part, category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage());
 
-        Observable<Response<StatusResponse>> Observable2 = Api.get2Service(Tags.base_url).deleteImages("Bearer " + userModel.getData().getToken(), productModel.getId() + "", imageDelteIds);
+        Observable<Response<StatusResponse>> Observable2 = Api.get2Service(Tags.base_url).deleteImages("Bearer " + userModel.getData().getToken(), imageDelteIds);
         Observable.merge(Observable1, Observable2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1677,27 +1690,35 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                     @Override
                     public void onNext(Response<StatusResponse> statusResponseResponse) {
-                        Log.e("data", statusResponseResponse.code() + "");
+                        Log.e("dldldll", statusResponseResponse.code() + "");
                         try {
-                            Log.d("RESPONSE", "onNext:=======" + statusResponseResponse.code() + "" + statusResponseResponse.errorBody().string());
+                            Log.e("dldldll", statusResponseResponse.code() + ""+statusResponseResponse.errorBody().string());
                         } catch (Exception e) {
-                            //e.printStackTrace();
+                           // e.printStackTrace();
                         }
 
+                        if (statusResponseResponse.isSuccessful()) {
+                            if (statusResponseResponse.body().getStatus() == 200) {
+                                next += 1;
+                            }
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e("ldkkdk", e.toString());
                     }
 
                     @Override
                     public void onComplete() {
                         dialog.dismiss();
-
-                        Log.d("RESPONSE", "DONE==========");
-                        setResult(RESULT_OK);
-                        finish();
+                        if (next == 2) {
+                            Toast.makeText(AddAdsActivity.this,getResources().getString(R.string.update_suc),Toast.LENGTH_LONG).show();
+                            Log.d("RESPONSE", "DONE==========");
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                        next=0;
                     }
                 });
 //        Api.getService(Tags.base_url)

@@ -179,5 +179,6 @@
     <string name="publish">نشر</string>
     <string name="sold">تم البيع</string>
     <string name="Edit">تعديل</string>
-    <string name="suc_upload">Success Upload</string>
+    <string name="suc_upload">تم الرفع بنجاح</string>
+    <string name="update_suc">تم التعديل بنجاح</string>
 </resources>

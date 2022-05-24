@@ -151,28 +151,55 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         binding.fab.setOnClickListener(v -> {
             if (userModel != null) {
                 Intent intent = new Intent(this, AddAdsActivity.class);
-                startActivityForResult(intent,100);
+                startActivityForResult(intent, 100);
             } else {
                 Toast.makeText(this, getString(R.string.please_sign_in_or_sign_up), Toast.LENGTH_SHORT).show();
             }
         });
         binding.flHome.setOnClickListener(v -> {
-            displayFragmentMain();
+            binding.flHome.setEnabled(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    binding.flHome.setEnabled(true);
+                    displayFragmentMain();
+                }
+            }, 1000);
         });
 
         binding.flDepartment.setOnClickListener(v -> {
-            displayFragmentDepartment();
+            binding.flDepartment.setEnabled(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    binding.flDepartment.setEnabled(true);
+                    displayFragmentDepartment();
+                }
+            }, 1000);
 
         });
 
         binding.flProfile.setOnClickListener(v -> {
-            displayFragmentProfile();
+            binding.flProfile.setEnabled(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    binding.flProfile.setEnabled(true);
+                    displayFragmentProfile();
+                }
+            }, 1000);
 
         });
 
         binding.flMenu.setOnClickListener(v -> {
-            displayFragmentMenu();
-
+            binding.flMenu.setEnabled(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    binding.flMenu.setEnabled(true);
+                    displayFragmentMenu();
+                }
+            }, 1000);
         });
 
 
@@ -518,57 +545,57 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
 
         FirebaseInstanceId.getInstance()
                 .getInstanceId().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                String token = task.getResult().getToken();
+                    if (task.isSuccessful()) {
+                        String token = task.getResult().getToken();
 
-                try {
-                    Api.getService(Tags.base_url)
-                            .updateFirebaseToken(token, userModel.getData().getId(), "android")
-                            .enqueue(new Callback<StatusResponse>() {
-                                @Override
-                                public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
-                                    if (response.isSuccessful() && response.body() != null) {
+                        try {
+                            Api.getService(Tags.base_url)
+                                    .updateFirebaseToken(token, userModel.getData().getId(), "android")
+                                    .enqueue(new Callback<StatusResponse>() {
+                                        @Override
+                                        public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
+                                            if (response.isSuccessful() && response.body() != null) {
 
-                                        if (response.body().getStatus() == 200) {
-                                            userModel.getData().setFirebaseToken(token);
-                                            preferences.create_update_userdata(HomeActivity.this, userModel);
-                                            Log.e("token", "updated successfully");
+                                                if (response.body().getStatus() == 200) {
+                                                    userModel.getData().setFirebaseToken(token);
+                                                    preferences.create_update_userdata(HomeActivity.this, userModel);
+                                                    Log.e("token", "updated successfully");
 
-                                        }
-                                    } else {
-                                        try {
-
-                                            Log.e("errorToken", response.code() + "_" + response.errorBody().string());
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<StatusResponse> call, Throwable t) {
-                                    try {
-
-                                        if (t.getMessage() != null) {
-                                            Log.e("errorToken2", t.getMessage());
-                                            if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                                //         Toast.makeText(HomeActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                                }
                                             } else {
-                                                //       Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                try {
+
+                                                    Log.e("errorToken", response.code() + "_" + response.errorBody().string());
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
                                             }
                                         }
 
-                                    } catch (Exception e) {
-                                    }
-                                }
-                            });
-                } catch (Exception e) {
+                                        @Override
+                                        public void onFailure(Call<StatusResponse> call, Throwable t) {
+                                            try {
+
+                                                if (t.getMessage() != null) {
+                                                    Log.e("errorToken2", t.getMessage());
+                                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                                        //         Toast.makeText(HomeActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        //       Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+
+                                            } catch (Exception e) {
+                                            }
+                                        }
+                                    });
+                        } catch (Exception e) {
 
 
-                }
+                        }
 
-            }
-        });
+                    }
+                });
     }
 
     public void deleteFirebaseToken() {
@@ -863,13 +890,13 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         if (requestCode == 1255 && resultCode == RESULT_OK) {
             startLocationUpdate();
 
-        }
-        else if(requestCode==100&&resultCode==RESULT_OK){
-            if(fragment_home!=null){
+        } else if (requestCode == 100 && resultCode == RESULT_OK) {
+            if (fragment_home != null) {
                 fragment_home.search();
             }
-            if(!fragment_home.isVisible()){
-            displayFragmentMain();}
+            if (!fragment_home.isVisible()) {
+                displayFragmentMain();
+            }
         }
 
 

@@ -572,10 +572,9 @@ public interface Service {
     );
 
     @FormUrlEncoded
-    @POST("api/editProduct")
+    @POST("api/deleteProductImages")
     Observable<Response<StatusResponse>> deleteImages(@Header("Authorization") String user_token,
-                                                 @Field("product_id") String product_id,
-                                                 @Field("ids[]") List<Integer> ids
+                                                      @Field("images_id[]") List<String> images_id
 
     );
 }

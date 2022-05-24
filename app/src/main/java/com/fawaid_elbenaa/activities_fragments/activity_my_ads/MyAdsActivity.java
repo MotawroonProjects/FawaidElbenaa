@@ -1,7 +1,9 @@
 package com.fawaid_elbenaa.activities_fragments.activity_my_ads;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.app.ProgressDialog;
@@ -52,19 +54,19 @@ public class MyAdsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_my_ads);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_my_ads);
         initView();
     }
 
     private void initView() {
         productModelList = new ArrayList<>();
         Paper.init(this);
-        lang = Paper.book().read("lang","ar");
+        lang = Paper.book().read("lang", "ar");
         binding.setLang(lang);
         preference = Preferences.getInstance();
         userModel = preference.getUserData(this);
-        binding.recView.setLayoutManager(new GridLayoutManager(this,2));
-        adapter = new MyProductAdapter(productModelList,this);
+        binding.recView.setLayoutManager(new GridLayoutManager(this, 2));
+        adapter = new MyProductAdapter(productModelList, this);
         binding.recView.setAdapter(adapter);
         binding.swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         binding.swipeRefresh.setOnRefreshListener(this::getMyProducts);
@@ -73,37 +75,36 @@ public class MyAdsActivity extends AppCompatActivity {
         getMyProducts();
     }
 
-    private void getMyProducts()
-    {
+    private void getMyProducts() {
 
         try {
 
             Api.getService(Tags.base_url)
-                    .getMyProducts("Bearer "+userModel.getData().getToken())
+                    .getMyProducts("Bearer " + userModel.getData().getToken())
                     .enqueue(new Callback<ProductsDataModel>() {
                         @Override
                         public void onResponse(Call<ProductsDataModel> call, Response<ProductsDataModel> response) {
                             binding.progBar.setVisibility(View.GONE);
                             binding.swipeRefresh.setRefreshing(false);
-                            if (response.isSuccessful() && response.body() != null ) {
-                                if (response.body().getStatus()==200){
-                                    if (response.body().getData().size()>0){
+                            if (response.isSuccessful() && response.body() != null) {
+                                if (response.body().getStatus() == 200) {
+                                    if (response.body().getData().size() > 0) {
                                         productModelList.clear();
                                         productModelList.addAll(response.body().getData());
                                         adapter.notifyDataSetChanged();
                                         binding.tvNoData.setVisibility(View.GONE);
-                                    }else {
+                                    } else {
                                         binding.tvNoData.setVisibility(View.VISIBLE);
 
                                     }
-                                }else {
-                                  //  Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //  Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 binding.progBar.setVisibility(View.GONE);
                                 binding.swipeRefresh.setRefreshing(false);
                                 if (response.code() == 500) {
-                                   // Toast.makeText(MyAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(MyAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
@@ -128,9 +129,9 @@ public class MyAdsActivity extends AppCompatActivity {
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //       Toast.makeText(MyAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //       Toast.makeText(MyAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                   //     Toast.makeText(MyAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //     Toast.makeText(MyAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -147,11 +148,11 @@ public class MyAdsActivity extends AppCompatActivity {
 
     public void setProductItemData(ProductModel productModel) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
-        intent.putExtra("product_id",productModel.getId());
+        intent.putExtra("product_id", productModel.getId());
         startActivity(intent);
     }
 
-    public void deleteAd(ProductModel productModel,int pos){
+    public void deleteAd(ProductModel productModel, int pos) {
 
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
@@ -159,24 +160,24 @@ public class MyAdsActivity extends AppCompatActivity {
         dialog.show();
 
         Api.getService(Tags.base_url)
-                .deleteProduct("Bearer "+userModel.getData().getToken(),productModel.getId())
+                .deleteProduct("Bearer " + userModel.getData().getToken(), productModel.getId())
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful()) {
-                            if (response.body()!=null&&response.body().getStatus()==200){
+                            if (response.body() != null && response.body().getStatus() == 200) {
                                 isDataChanged = true;
                                 productModelList.remove(pos);
                                 adapter.notifyItemRemoved(pos);
-                                if (productModelList.size()>0){
+                                if (productModelList.size() > 0) {
                                     binding.tvNoData.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     binding.tvNoData.setVisibility(View.VISIBLE);
 
                                 }
-                            }else {
-                            //    Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            } else {
+                                //    Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                             }
                         } else {
@@ -188,7 +189,7 @@ public class MyAdsActivity extends AppCompatActivity {
                             }
 
                             if (response.code() == 500) {
-                              //  Toast.makeText(MyAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(MyAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             } else {
                                 //Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
@@ -203,9 +204,9 @@ public class MyAdsActivity extends AppCompatActivity {
                                 Log.e("error", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                         //           Toast.makeText(MyAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    //           Toast.makeText(MyAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 } else {
-                           //         Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //         Toast.makeText(MyAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
@@ -217,7 +218,7 @@ public class MyAdsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (isDataChanged){
+        if (isDataChanged) {
             setResult(RESULT_OK);
         }
         finish();
@@ -230,22 +231,22 @@ public class MyAdsActivity extends AppCompatActivity {
         dialog.show();
 
         Api.getService(Tags.base_url)
-                .changeAdStatus("Bearer "+userModel.getData().getToken(),productModel.getId()+"")
+                .changeAdStatus("Bearer " + userModel.getData().getToken(), productModel.getId() + "")
                 .enqueue(new Callback<StatusResponse>() {
                     @Override
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful()) {
-                            if (response.body()!=null&&response.body().getStatus()==200){
-                                if (productModel.getIs_active().equals("1")){
+                            if (response.body() != null && response.body().getStatus() == 200) {
+                                if (productModel.getIs_active().equals("1")) {
                                     productModel.setIs_active("0");
-                                }else {
+                                } else {
                                     productModel.setIs_active("1");
 
                                 }
-                                productModelList.set(adapterPosition,productModel);
+                                productModelList.set(adapterPosition, productModel);
                                 adapter.notifyItemChanged(adapterPosition);
-                            }else {
+                            } else {
 
                             }
                         } else {
@@ -285,9 +286,20 @@ public class MyAdsActivity extends AppCompatActivity {
     }
 
     public void edit(ProductModel productModel, int adapterPosition) {
-        Intent intent=new Intent(this, AddAdsActivity.class);
-        intent.putExtra("data",productModel);
-        startActivity(intent);
+        Intent intent = new Intent(this, AddAdsActivity.class);
+        intent.putExtra("data", productModel);
+        startActivityForResult(intent, 2);
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2 && resultCode == RESULT_OK) {
+            getMyProducts();
+        }
+
+
+    }
+
 }
