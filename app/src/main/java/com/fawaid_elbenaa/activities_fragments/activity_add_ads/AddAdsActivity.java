@@ -3,6 +3,9 @@ package com.fawaid_elbenaa.activities_fragments.activity_add_ads;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+
+import io.reactivex.Observable;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +39,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.fawaid_elbenaa.models.ProductModel;
 import com.fawaid_elbenaa.models.UserModel;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -90,6 +94,7 @@ import com.fawaid_elbenaa.preferences.Preferences;
 import com.fawaid_elbenaa.remote.Api;
 import com.fawaid_elbenaa.share.Common;
 import com.fawaid_elbenaa.tags.Tags;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -99,6 +104,10 @@ import java.util.List;
 import java.util.Map;
 
 import io.paperdb.Paper;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -122,6 +131,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     private String address = "";
     private GoogleMap mMap;
     private Marker marker;
+    private int type;
+    private Uri uri;
     private float zoom = 15.0f;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
@@ -133,7 +144,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     private List<TypeModel> typeModelList;
     private SpinnerDepartmentAdapter spinnerDepartmentAdapter;
     private SpinnerTypeAdapter spinnerTypeAdapter;
-
+    private List<String> imageDelteIds;
     private ImageAdsAdapter imageAdsAdapter;
     private boolean isVideoAvailable = false;
     private List<ItemAddAds> itemAddAdsList;
@@ -144,6 +155,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
     private List<GovernorateModel> governorateModelList;
     private SpinnerGovernorateAdapter spinnerGovernorateAdapter;
+    private ProductModel productModel;
+    private int next = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -155,11 +168,20 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_ads);
+        getDataFromIntent();
         initView();
+    }
+
+    private void getDataFromIntent() {
+        Intent intent = getIntent();
+        if (intent != null && intent.getSerializableExtra("data") != null) {
+            productModel = (ProductModel) intent.getSerializableExtra("data");
+        }
     }
 
 
     private void initView() {
+        imageDelteIds = new ArrayList<>();
         governorateModelList = new ArrayList<>();
         typeModelList = new ArrayList<>();
         model = new AddAdsModel();
@@ -169,7 +191,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         imagesUriList = new ArrayList<>();
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(this);
-     //   Log.e("bbbbbbbbb", ""+userModel.getData().getToken());
+        //   Log.e("bbbbbbbbb", ""+userModel.getData().getToken());
 
         Paper.init(this);
         lang = Paper.book().read("lang", "ar");
@@ -286,7 +308,10 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
             }
         });
-
+        binding.flimages.setOnClickListener(view -> {
+            type = 1;
+            openSheet();
+        });
         binding.flUploadImage.setOnClickListener(view -> {
             openSheet();
         });
@@ -308,11 +333,8 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         binding.llBack.setOnClickListener(view -> back());
 
         binding.btnSend.setOnClickListener(view -> {
-            if (userModel.getData().isCan_post()) {
-                checkDataValid();
-            } else {
-                Toast.makeText(AddAdsActivity.this, getResources().getString(R.string.sub_packge), Toast.LENGTH_LONG).show();
-            }
+            checkDataValid();
+
         });
         getDepartment();
         //getGovernorate();
@@ -365,7 +387,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
                                         departmentModelList.addAll(response.body().getData());
                                         runOnUiThread(() -> spinnerDepartmentAdapter.notifyDataSetChanged());
-
+                                        if (productModel != null) {
+                                            updateData();
+                                        }
                                     }
                                 } else {
                                     //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
@@ -410,6 +434,42 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
         }
 
+
+    }
+
+    private void updateData() {
+        model.setAddress(productModel.getAddress());
+        model.setPrice(productModel.getPrice() + "");
+        model.setName(productModel.getTitle());
+        model.setDetails(productModel.getDesc());
+        model.setCategory_id(productModel.getCategory_id());
+        model.setLat(productModel.getLatitude());
+        model.setLng(productModel.getLongitude());
+        LatLng latLng = new LatLng(productModel.getLatitude(), productModel.getLongitude());
+        addMarker(latLng);
+        if (productModel.getMain_image() != null) {
+            binding.flimages.setVisibility(View.VISIBLE);
+            Picasso.get().load(Tags.IMAGE_URL + productModel.getMain_image()).into(binding.image);
+        }
+        if (productModel.getVideo() != null) {
+            Log.e("llll", productModel.getVideo());
+            Uri uri = Uri.parse(Tags.IMAGE_URL+productModel.getVideo());
+            new VideoTask().execute(uri);
+        }
+        if (productModel.getProduct_images() != null && productModel.getProduct_images().size() > 0) {
+            for (int i = 0; i < productModel.getProduct_images().size(); i++) {
+                imagesUriList.add(Tags.IMAGE_URL + productModel.getProduct_images().get(i).getName());
+
+
+            }
+        }
+        imageAdsAdapter.notifyDataSetChanged();
+        for (int i = 0; i < departmentModelList.size(); i++) {
+            if (departmentModelList.get(i).getId() == model.getCategory_id()) {
+                binding.spinnerCategory.setSelection(i);
+                return;
+            }
+        }
 
     }
 
@@ -634,20 +694,26 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
             }
         }
-        if (model.isDataValid(this)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (productModel == null) {
+            if (model.isDataValid(this)) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-            if (videoUri != null && model.getItemAddAdsList().size() > 0) {
-                addAdsWithVideoWithList();
-            } else if (videoUri == null && model.getItemAddAdsList().size() == 0) {
-                addAdsWithoutVideoWithoutList();
+                if (videoUri != null && model.getItemAddAdsList().size() > 0) {
+                    addAdsWithVideoWithList();
+                } else if (videoUri == null && model.getItemAddAdsList().size() == 0) {
+                    addAdsWithoutVideoWithoutList();
 
-            } else if (videoUri != null && model.getItemAddAdsList().size() == 0) {
-                addAdsWithVideoWithoutList();
+                } else if (videoUri != null && model.getItemAddAdsList().size() == 0) {
+                    addAdsWithVideoWithoutList();
 
-            } else if (videoUri == null && model.getItemAddAdsList().size() > 0) {
-                addAdsWithoutVideoWithList();
+                } else if (videoUri == null && model.getItemAddAdsList().size() > 0) {
+                    addAdsWithoutVideoWithList();
 
+                }
+            }
+        } else {
+            if (model.isData2Valid(this)) {
+                editAdd();
             }
         }
     }
@@ -684,7 +750,15 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                setResult(RESULT_OK);
+
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc_upload, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -749,7 +823,14 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                setResult(RESULT_OK);
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc_upload, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -808,7 +889,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         MultipartBody.Part main_image_part = Common.getMultiPartImage(this, Uri.parse(imagesUriList.get(0)), "main_image");
 
 
-        Log.e("bbbbbbbbb", ""+userModel.getData().getToken());
+        Log.e("bbbbbbbbb", "" + userModel.getData().getToken());
         Api.getService(Tags.base_url)
                 .addAdsWithoutVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, getMultipartImage())
                 .enqueue(new Callback<StatusResponse>() {
@@ -816,7 +897,15 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                setResult(RESULT_OK);
+
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc_upload, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -891,7 +980,14 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            finish();
+                            if (response.body().getStatus() == 200) {
+                                setResult(RESULT_OK);
+                                finish();
+                                Toast.makeText(AddAdsActivity.this, R.string.suc_upload, Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 350) {
+                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+
+                            }
                         } else {
                             try {
                                 Log.e("error", response.code() + "__" + response.errorBody().string());
@@ -936,8 +1032,10 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         List<MultipartBody.Part> parts = new ArrayList<>();
         for (String path : imagesUriList) {
             Uri uri = Uri.parse(path);
-            MultipartBody.Part part = Common.getMultiPartImage(this, uri, "images[]");
-            parts.add(part);
+            if (!uri.toString().contains("http")) {
+                MultipartBody.Part part = Common.getMultiPartImage(this, uri, "images[]");
+                parts.add(part);
+            }
         }
         return parts;
     }
@@ -1072,24 +1170,38 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         } else if (requestCode == READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
 
             Uri uri = data.getData();
-            if (imagesUriList.size() < 6) {
-                imagesUriList.add(uri.toString());
-                imageAdsAdapter.notifyItemInserted(imagesUriList.size() - 1);
+            if (type == 0) {
+                if (imagesUriList.size() < 6) {
+                    imagesUriList.add(uri.toString());
+                    imageAdsAdapter.notifyItemInserted(imagesUriList.size() - 1);
+                } else {
+                    Toast.makeText(this, R.string.max_ad_photo, Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, R.string.max_ad_photo, Toast.LENGTH_SHORT).show();
+                Picasso.get().load(uri).into(binding.image);
+                this.uri = uri;
+
             }
+            type = 0;
         } else if (requestCode == CAMERA_REQ && resultCode == Activity.RESULT_OK && data != null) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             Uri uri = getUriFromBitmap(bitmap);
-            if (uri != null) {
-                if (imagesUriList.size() < 6) {
-                    imagesUriList.add(uri.toString());
-                    imageAdsAdapter.notifyItemInserted(imagesUriList.size() - 1);
 
+            if (uri != null) {
+                if (type == 0) {
+                    if (imagesUriList.size() < 6) {
+                        imagesUriList.add(uri.toString());
+                        imageAdsAdapter.notifyItemInserted(imagesUriList.size() - 1);
+
+                    } else {
+                        Toast.makeText(this, R.string.max_ad_photo, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(this, R.string.max_ad_photo, Toast.LENGTH_SHORT).show();
+                    Picasso.get().load(uri).into(binding.image);
+                    this.uri = uri;
                 }
+                type = 0;
             }
 
 
@@ -1333,6 +1445,13 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public void deleteImage(int adapterPosition) {
         if (imagesUriList.size() > 0) {
+            if (imagesUriList.get(adapterPosition).contains("http")) {
+                for (int i = 0; i < productModel.getProduct_images().size(); i++) {
+                    if (productModel.getProduct_images().get(i).getName().equals(imagesUriList.get(adapterPosition).replaceAll(Tags.IMAGE_URL, ""))) {
+                        imageDelteIds.add(productModel.getProduct_images().get(i).getId()+"");
+                    }
+                }
+            }
             imagesUriList.remove(adapterPosition);
             imageAdsAdapter.notifyItemRemoved(adapterPosition);
 
@@ -1353,7 +1472,16 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
         @Override
         protected Long doInBackground(Uri... uris) {
             uri = uris[0];
-            retriever.setDataSource(AddAdsActivity.this, uris[0]);
+            try {
+                retriever.setDataSource(AddAdsActivity.this, uris[0]);
+
+            }
+            catch (Exception e){
+                Log.e("slslsl",e.toString());
+
+                retriever.setDataSource( uris[0].toString(), new HashMap<String, String>());
+
+            }
             String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
             long duration = Long.parseLong(time) / 1000;
             retriever.release();
@@ -1366,7 +1494,9 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
             if (duration <= 59) {
                 isVideoAvailable = true;
                 videoUri = uri;
-                model.setVideo_url(videoUri.toString());
+                if (!videoUri.toString().contains("http")) {
+                    model.setVideo_url(videoUri.toString());
+                }
                 initPlayer(videoUri);
 
             } else {
@@ -1457,7 +1587,7 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
 
     private void getProfile() {
         try {
-            Log.e("ffffff", ""+userModel.getData().getToken());
+            Log.e("ffffff", "" + userModel.getData().getToken());
 
             Api.getService(Tags.base_url)
                     .getProfile("Bearer " + userModel.getData().getToken(), userModel.getData().getId())
@@ -1516,7 +1646,134 @@ public class AddAdsActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private void updateData(UserModel body) {
+        body.getData().setToken(userModel.getData().getToken());
         userModel = body;
+
+    }
+
+    private void editAdd() {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        RequestBody title_part = Common.getRequestBodyText(model.getName());
+        RequestBody category_id_part = Common.getRequestBodyText(String.valueOf(model.getCategory_id()));
+        RequestBody governorate_id_part = Common.getRequestBodyText(String.valueOf(model.getGovernate_id()));
+        //RequestBody type_id_part = Common.getRequestBodyText(String.valueOf(model.getType_id()));
+        RequestBody price_part = Common.getRequestBodyText(String.valueOf(model.getPrice()));
+        RequestBody details_part = Common.getRequestBodyText(String.valueOf(model.getDetails()));
+        RequestBody address_part = Common.getRequestBodyText(model.getAddress());
+        RequestBody lat_part = Common.getRequestBodyText(String.valueOf(model.getLat()));
+        RequestBody lng_part = Common.getRequestBodyText(String.valueOf(model.getLng()));
+        RequestBody product_part = Common.getRequestBodyText(String.valueOf(productModel.getId() + ""));
+        MultipartBody.Part main_image_part = null;
+        if (uri != null) {
+            main_image_part = Common.getMultiPartImage(this, uri, "main_image");
+        }
+        MultipartBody.Part video_part = null;
+        if (videoUri != null&&!model.getVideo_url().isEmpty()) {
+            video_part = Common.getMultiPartVideo(this, videoUri, "video");
+        }
+        if(imageDelteIds.size()==0){
+            imageDelteIds=null;
+        }
+        Observable<Response<StatusResponse>> Observable1 = Api.get2Service(Tags.base_url).editAdd("Bearer " + userModel.getData().getToken(), product_part, category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage());
+
+        Observable<Response<StatusResponse>> Observable2 = Api.get2Service(Tags.base_url).deleteImages("Bearer " + userModel.getData().getToken(), imageDelteIds);
+        Observable.merge(Observable1, Observable2)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<StatusResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<StatusResponse> statusResponseResponse) {
+                        Log.e("dldldll", statusResponseResponse.code() + "");
+                        try {
+                            Log.e("dldldll", statusResponseResponse.code() + ""+statusResponseResponse.errorBody().string());
+                        } catch (Exception e) {
+                           // e.printStackTrace();
+                        }
+
+                        if (statusResponseResponse.isSuccessful()) {
+                            if (statusResponseResponse.body().getStatus() == 200) {
+                                next += 1;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("ldkkdk", e.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dialog.dismiss();
+                        if (next == 2) {
+                            Toast.makeText(AddAdsActivity.this,getResources().getString(R.string.update_suc),Toast.LENGTH_LONG).show();
+                            Log.d("RESPONSE", "DONE==========");
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                        next=0;
+                    }
+                });
+//        Api.getService(Tags.base_url)
+//                .addAdsWithVideoWithoutList("Bearer " + userModel.getData().getToken(), category_id_part, title_part, price_part, address_part, lat_part, lng_part, details_part, main_image_part, video_part, getMultipartImage())
+//                .enqueue(new Callback<StatusResponse>() {
+//                    @Override
+//                    public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
+//                        dialog.dismiss();
+//                        if (response.isSuccessful() && response.body() != null) {
+//                            if (response.body().getStatus() == 200) {
+//                                setResult(RESULT_OK);
+//                                finish();
+//                                Toast.makeText(AddAdsActivity.this, R.string.suc_upload, Toast.LENGTH_SHORT).show();
+//                            } else if (response.body().getStatus() == 350) {
+//                                Toast.makeText(AddAdsActivity.this, R.string.recharge_package, Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        } else {
+//                            try {
+//                                Log.e("error", response.code() + "__" + response.errorBody().string());
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                            if (response.code() == 500) {
+//                                //      Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+//                            }
+//                            {
+//                                Log.e("mmmmmmmmmm", response.code() + "__" + response.errorBody());
+//
+//                                //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<StatusResponse> call, Throwable t) {
+//                        try {
+//                            dialog.dismiss();
+//                            if (t.getMessage() != null) {
+//                                Log.e("mmmmmmmmmm", t.getMessage() + "__");
+//
+//                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+//                                    //   Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Log.e("ccccc", t.getMessage());
+//
+//                                    //  Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            Log.e("Error", e.getMessage() + "__");
+//                        }
+//                    }
+//                });
 
     }
 

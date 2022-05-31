@@ -21,6 +21,7 @@ public class SliderModel implements Serializable {
         private String title;
         private String desc;
         private String image;
+        private String link;
         private String action_link;
         private String action_link_title;
         private String type;
@@ -61,6 +62,10 @@ public class SliderModel implements Serializable {
 
         public String getUpdated_at() {
             return updated_at;
+        }
+
+        public String getLink() {
+            return link;
         }
     }
 

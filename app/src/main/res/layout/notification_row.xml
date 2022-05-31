@@ -7,6 +7,8 @@
         <variable
             name="model"
             type="com.fawaid_elbenaa.models.NotificationModel" />
+
+        <import type="android.text.Html" />
     </data>
 
     <LinearLayout
@@ -69,14 +71,16 @@
 
 
         <TextView
+            android:id="@+id/tvContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:autoLink="web"
             android:ellipsize="end"
             android:maxLines="4"
-            android:text="@{model.message}"
+            android:text="@{Html.fromHtml(model.message)}"
             android:textColor="@color/gray4"
             android:textSize="16sp"
             android:textStyle="bold" />

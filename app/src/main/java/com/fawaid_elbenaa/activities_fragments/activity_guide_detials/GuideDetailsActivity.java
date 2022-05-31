@@ -57,7 +57,7 @@ public class GuideDetailsActivity extends AppCompatActivity implements OnMapRead
     private Comment_Adapter commentAdapter;
     private List<CommentModel> commentModelList;
     private int commentCount = 0;
-;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -327,12 +327,12 @@ productImageModelList.addAll(productModel.getImages());
         binding.setModel(productModel);
         binding.flChatViaWhatsApp.setVisibility(View.VISIBLE);
         binding.scrollView.setVisibility(View.VISIBLE);
-
-        FragmentMapTouchListener fragment = (FragmentMapTouchListener) getSupportFragmentManager().findFragmentById(R.id.map);
-        if (fragment!=null){
-            fragment.getMapAsync(this);
-            fragment.setListener(() -> { binding.scrollView.requestDisallowInterceptTouchEvent(true); });
-        }
+//
+//        FragmentMapTouchListener fragment = (FragmentMapTouchListener) getSupportFragmentManager().findFragmentById(R.id.map);
+//        if (fragment!=null){
+//            fragment.getMapAsync(this);
+//            fragment.setListener(() -> { binding.scrollView.requestDisallowInterceptTouchEvent(true); });
+//        }
         getComments();
 
     }
@@ -348,14 +348,14 @@ productImageModelList.addAll(productModel.getImages());
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if (googleMap!=null){
-            mMap = googleMap;
-            mMap.setBuildingsEnabled(false);
-            mMap.setTrafficEnabled(false);
-            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            mMap.getUiSettings().setZoomControlsEnabled(false);
-            addMarker();
-        }
+//        if (googleMap!=null){
+//            mMap = googleMap;
+//            mMap.setBuildingsEnabled(false);
+//            mMap.setTrafficEnabled(false);
+//            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//            mMap.getUiSettings().setZoomControlsEnabled(false);
+//            addMarker();
+//        }
     }
 
     private void addMarker() {

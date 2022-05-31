@@ -94,16 +94,15 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            if (intent.hasExtra("product_id")){
+            if (intent.hasExtra("product_id")) {
                 product_id = intent.getIntExtra("product_id", 0);
+                Log.e("product_id", product_id + "");
 
-            }else {
+            } else {
                 product_id = Integer.parseInt(intent.getData().getLastPathSegment());
             }
 
         }
-
-
 
 
     }
@@ -128,12 +127,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         binding.recView.setAdapter(adapter);
 
 
-
         sliderAdapter = new SliderAdapter(productImageModelList, this);
         binding.pager.setAdapter(sliderAdapter);
 
 
-        commentAdapter = new Comment_Adapter(commentModelList,this);
+        commentAdapter = new Comment_Adapter(commentModelList, this);
         binding.recViewComment.setLayoutManager(new LinearLayoutManager(this));
         binding.recViewComment.setAdapter(commentAdapter);
 
@@ -155,30 +153,47 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         });
 
         binding.flCall.setOnClickListener(view -> {
-            String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
-            startActivity(intent);
+            if (productModel.getIs_active().equals("1")) {
+                String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, R.string.sold, Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         binding.iconWhatsApp.setOnClickListener(view -> {
-            String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
-            String url = "https://api.whatsapp.com/send?phone=" + phone;
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
+            if (productModel.getIs_active().equals("1")) {
+                String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
+                String url = "https://api.whatsapp.com/send?phone=" + phone;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            } else {
+                Toast.makeText(this, R.string.sold, Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
         binding.flChatViaWhatsApp.setOnClickListener(v -> {
-            String phone = productModel.getUser().getPhone_code()+productModel.getUser().getPhone();
-            String url = "https://api.whatsapp.com/send?phone="+phone;
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
+            if (productModel.getIs_active().equals("1")) {
+                String phone = productModel.getUser().getPhone_code() + productModel.getUser().getPhone();
+                String url = "https://api.whatsapp.com/send?phone=" + phone;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            } else {
+                Toast.makeText(this, R.string.sold, Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
         binding.imageSend.setOnClickListener(v -> {
             String comment = binding.edtMessage.getText().toString().trim();
-            if (!comment.isEmpty()){
+            if (!comment.isEmpty()) {
                 binding.edtMessage.setText(null);
                 sendComment(comment);
             }
@@ -204,10 +219,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         });
 
         binding.imgShare.setOnClickListener(v -> {
-            String data = getString(R.string.app_name)+"\n"+productModel.getTitle()+"\n"+Tags.base_url+"product_details/"+productModel.getId();
+            String data = getString(R.string.app_name) + "\n" + productModel.getTitle() + "\n" + Tags.base_url + "product_details/" + productModel.getId();
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT,data);
+            intent.putExtra(Intent.EXTRA_TEXT, data);
             startActivity(intent);
         });
 
@@ -217,33 +232,35 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
     private void sendComment(String comment) {
         try {
             Api.getService(Tags.base_url)
-                    .sendComments("Bearer " + userModel.getData().getToken(), product_id+"",null, comment)
+                    .sendComments("Bearer " + userModel.getData().getToken(), product_id + "", null, comment)
                     .enqueue(new Callback<SingleCommentDataModel>() {
                         @Override
                         public void onResponse(Call<SingleCommentDataModel> call, Response<SingleCommentDataModel> response) {
                             if (response.isSuccessful()) {
-                                if (response.body()!=null&&response.body().getStatus() == 200) {
+                                if (response.body() != null && response.body().getStatus() == 200) {
                                     binding.llNoComment.setVisibility(View.GONE);
                                     commentCount++;
-                                    String c = getString(R.string.comments)+"("+commentCount+")";
+                                    String c = getString(R.string.comments) + "(" + commentCount + ")";
                                     binding.tvComments.setText(c);
                                     commentModelList.add(response.body().getData());
-                                    adapter.notifyItemChanged(commentModelList.size()-1);
-                                    binding.recViewComment.postDelayed(()->{binding.recViewComment.scrollToPosition(commentModelList.size()-1);}, 500);
+                                    adapter.notifyItemChanged(commentModelList.size() - 1);
+                                    binding.recViewComment.postDelayed(() -> {
+                                        binding.recViewComment.scrollToPosition(commentModelList.size() - 1);
+                                    }, 500);
 
                                 } else {
 
-                                 //   Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 }
                             } else {
 
                                 if (response.code() == 500) {
-                                //    Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                  //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -262,9 +279,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                              //          Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //          Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                //        Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //        Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -285,7 +302,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .getAdminChatMessage("Bearer " + userModel.getData().getToken(),productModel.getUser().getId()+"")
+                    .getAdminChatMessage("Bearer " + userModel.getData().getToken(), productModel.getUser().getId() + "")
                     .enqueue(new Callback<AdminMessageDataModel>() {
                         @Override
                         public void onResponse(Call<AdminMessageDataModel> call, Response<AdminMessageDataModel> response) {
@@ -295,18 +312,18 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (response.body() != null && response.body().getStatus() == 200) {
                                     navigateToChatActivity(response.body().getData().getRoom());
                                 } else {
-                               //     Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //     Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 }
 
                             } else {
                                 dialog.dismiss();
                                 if (response.code() == 500) {
-                                 //   Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                  //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -325,9 +342,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                //        Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //        Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                  //      Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //      Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -341,7 +358,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
     }
 
     private void navigateToChatActivity(MessageModel.RoomModel data) {
-        ChatUserModel chatUserModel = new ChatUserModel(data.getAdmin_id(), getString(R.string.admin),"", data.getId(),product_id+"");
+        ChatUserModel chatUserModel = new ChatUserModel(data.getAdmin_id(), getString(R.string.admin), "", data.getId(), product_id + "");
         Intent intent = new Intent(this, ChatAdminActivity.class);
         intent.putExtra("data", chatUserModel);
         startActivity(intent);
@@ -374,7 +391,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                     }
 
                                 } else {
-                                 //   Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //   Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -382,11 +399,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 binding.progBar.setVisibility(View.GONE);
 
                                 if (response.code() == 500) {
-                          //          Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //          Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                            //        Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //        Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -406,9 +423,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                             //           Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //           Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                               //         Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //         Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -423,35 +440,37 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
     }
 
-    private void getComments(){
+    private void getComments() {
         try {
 
 
             Api.getService(Tags.base_url)
-                    .getComments(product_id+"",null, "limit")
+                    .getComments(product_id + "", null, "limit")
                     .enqueue(new Callback<CommentDataModel>() {
                         @Override
                         public void onResponse(Call<CommentDataModel> call, Response<CommentDataModel> response) {
                             binding.progBar.setVisibility(View.GONE);
                             if (response.isSuccessful()) {
 
-                                if (response.body()!=null&&response.body().getStatus() == 200) {
+                                if (response.body() != null && response.body().getStatus() == 200) {
                                     commentCount = response.body().getData().getCount_of_all_comments();
-                                    String c = getString(R.string.comments)+"("+commentCount+")";
+                                    String c = getString(R.string.comments) + "(" + commentCount + ")";
                                     binding.tvComments.setText(c);
-                                    if (response.body().getData().getComments().size()>0){
+                                    if (response.body().getData().getComments().size() > 0) {
                                         binding.llNoComment.setVisibility(View.GONE);
                                         commentModelList.clear();
                                         commentModelList.addAll(response.body().getData().getComments());
                                         commentAdapter.notifyDataSetChanged();
-                                        binding.recViewComment.postDelayed(()->{binding.recViewComment.scrollToPosition(commentModelList.size()-1);}, 500);
-                                    }else {
+                                        binding.recViewComment.postDelayed(() -> {
+                                            binding.recViewComment.scrollToPosition(commentModelList.size() - 1);
+                                        }, 500);
+                                    } else {
                                         binding.llNoComment.setVisibility(View.VISIBLE);
 
                                     }
 
                                 } else {
-                              //      Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //      Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -459,11 +478,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 binding.progBar.setVisibility(View.GONE);
 
                                 if (response.code() == 500) {
-                                //    Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                  //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -483,9 +502,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //       Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //       Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                   //     Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //     Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -509,6 +528,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
         }
 */
 
+        binding.flAction.setVisibility(View.VISIBLE);
         if (productModel.getProduct_details() != null && productModel.getProduct_details().size() > 0) {
             productDetailsModelList.addAll(productModel.getProduct_details());
             adapter.notifyDataSetChanged();
@@ -544,14 +564,15 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
 
         binding.setModel(productModel);
-        binding.flChatViaWhatsApp.setVisibility(View.VISIBLE);
+
+        //binding.flChatViaWhatsApp.setVisibility(View.VISIBLE);
         binding.scrollView.setVisibility(View.VISIBLE);
 
-        FragmentMapTouchListener fragment = (FragmentMapTouchListener) getSupportFragmentManager().findFragmentById(R.id.map);
-        if (fragment!=null){
-            fragment.getMapAsync(this);
-            fragment.setListener(() -> { binding.scrollView.requestDisallowInterceptTouchEvent(true); });
-        }
+//        FragmentMapTouchListener fragment = (FragmentMapTouchListener) getSupportFragmentManager().findFragmentById(R.id.map);
+//        if (fragment!=null){
+//            fragment.getMapAsync(this);
+//            fragment.setListener(() -> { binding.scrollView.requestDisallowInterceptTouchEvent(true); });
+//        }
         getComments();
 
     }
@@ -606,7 +627,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
                                     }
 
-                              //      Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //      Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 }
                             } else {
@@ -622,11 +643,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
                                 }
                                 if (response.code() == 500) {
-                      //              Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    //              Toast.makeText(ProductDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                        //            Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //            Toast.makeText(ProductDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -651,9 +672,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                 //       Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        //       Toast.makeText(ProductDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                   //     Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //     Toast.makeText(ProductDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -774,6 +795,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
 
     }
+
     @Override
     public void onBackPressed() {
         if (isDataChanged) {
@@ -784,19 +806,19 @@ public class ProductDetailsActivity extends AppCompatActivity implements OnMapRe
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if (googleMap!=null){
-            mMap = googleMap;
-            mMap.setBuildingsEnabled(false);
-            mMap.setTrafficEnabled(false);
-            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            mMap.getUiSettings().setZoomControlsEnabled(false);
-            addMarker();
-        }
+//        if (googleMap!=null){
+//            mMap = googleMap;
+//            mMap.setBuildingsEnabled(false);
+//            mMap.setTrafficEnabled(false);
+//            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//            mMap.getUiSettings().setZoomControlsEnabled(false);
+//            addMarker();
+//        }
     }
 
     private void addMarker() {
         LatLng latLng = new LatLng(productModel.getLatitude(), productModel.getLongitude());
         mMap.addMarker(new MarkerOptions().title(productModel.getAddress()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).position(latLng));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15.6f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.6f));
     }
 }

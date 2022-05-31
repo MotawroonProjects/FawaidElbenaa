@@ -98,7 +98,7 @@ public class NotificationActivity extends AppCompatActivity {
                             binding.swipeRefresh.setRefreshing(false);
                             binding.progBar.setVisibility(View.GONE);
                             if (response.isSuccessful() ) {
-
+                                Log.e("sada","asdas");
                                 if (response.body()!=null&&response.body().getStatus()==200){
                                     notificationModelList.clear();
                                     notificationModelList.addAll(response.body().getData());

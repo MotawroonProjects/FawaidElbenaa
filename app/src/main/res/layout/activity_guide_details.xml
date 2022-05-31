@@ -295,6 +295,7 @@
                         android:name="com.fawaid_elbenaa.activities_fragments.FragmentMapTouchListener"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
+                        android:visibility="gone"
                         android:layout_marginTop="8dp" />
 
 

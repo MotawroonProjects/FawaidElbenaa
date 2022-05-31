@@ -204,14 +204,14 @@
                         <Space
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
                             android:text="@{model.counts}"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
 
                         <ImageView
                             android:layout_width="24dp"
@@ -406,6 +406,57 @@
                             android:background="@drawable/line2"
                             android:layerType="software" />
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="3dp"
+                                android:src="@drawable/ic_call2"
+                                app:tint="@color/colorPrimary" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight=".3"
+                                android:text="@string/phone"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray4" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight=".7"
+                                android:text="@{model.user.phone_code+model.user.phone}"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/line2"
+                            android:layerType="software" />
                     </LinearLayout>
 
                     <FrameLayout
@@ -426,13 +477,22 @@
 
                     </FrameLayout>
 
-                    <fragment
-                        android:id="@+id/map"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:name="com.fawaid_elbenaa.activities_fragments.FragmentMapTouchListener"
-                        android:layout_marginTop="8dp"
-                        />
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        >
+                        <fragment
+                            android:id="@+id/map"
+                            android:name="com.fawaid_elbenaa.activities_fragments.FragmentMapTouchListener"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:layout_marginTop="8dp"
+                            android:visibility="gone"
+
+                            />
+
+                    </FrameLayout>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -441,12 +501,11 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="2dp"
                         android:layout_marginBottom="3dp"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp"
-                        app:contentPadding="8dp"
-                        android:visibility="gone"
-                        >
+                        app:contentPadding="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -664,12 +723,13 @@
                             android:layout_marginEnd="8dp"
                             android:text="@string/comments"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
                         <Space
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/tvShowAll"
@@ -719,8 +779,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:visibility="@{userModel==null?View.INVISIBLE:View.VISIBLE}"
-                        android:background="@drawable/rounded_gray">
+                        android:background="@drawable/rounded_gray"
+                        android:visibility="@{userModel==null?View.INVISIBLE:View.VISIBLE}">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -756,9 +816,9 @@
                                 android:layout_height="35dp"
                                 android:layout_gravity="center_vertical"
                                 android:padding="10dp"
+                                android:rotation='@{lang.equals("en")?180:0}'
                                 android:src="@drawable/ic_send2"
                                 app:tint="@color/colorPrimary"
-                                android:rotation='@{lang.equals("en")?180:0}'
 
                                 />
 
@@ -779,34 +839,53 @@
 
 
         <FrameLayout
-            android:id="@+id/flChatViaWhatsApp"
+            android:id="@+id/flAction"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/color3"
-            android:visibility="gone"
-
+            android:background='@{model.is_active.equals("1")?@color/color3:@color/colorred}'
+            android:visibility="invisible"
             >
-            <LinearLayout
+
+            <FrameLayout
+                android:id="@+id/flChatViaWhatsApp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility='@{model.is_active.equals("1")?View.VISIBLE:View.GONE,default=gone}'
+                >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_whatsapp2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/chat_via_whatsapp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_whatsapp2"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/white"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/chat_via_whatsapp"
-                    />
-            </LinearLayout>
+                android:text="@string/sold"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility='@{model.is_active.equals("1")?View.GONE:View.VISIBLE}' />
         </FrameLayout>
 
     </LinearLayout>

@@ -84,7 +84,7 @@ public class Fragment_Department extends Fragment {
 
     }
 
-    private void getDepartments() {
+    public void getDepartments() {
 
         binding.progBar.setVisibility(View.VISIBLE);
 

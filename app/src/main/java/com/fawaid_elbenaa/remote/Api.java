@@ -3,6 +3,7 @@ package com.fawaid_elbenaa.remote;
 import com.fawaid_elbenaa.services.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -56,6 +57,41 @@ public class Api {
     public static Service getService(String baseUrl)
     {
         return getRetrofit(baseUrl).create(Service.class);
+    }
+    private static Retrofit get2Retrofit(String baseUrl) {
+
+        Interceptor interceptor = chain -> {
+            Request request = chain.request();
+
+            Request accept = request.newBuilder()
+                    .addHeader("ACCEPT", "application/json")
+                    .build();
+            return chain.proceed(accept);
+        };
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .writeTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(90, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .addInterceptor(interceptor)
+                .build();
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+        return retrofit;
+    }
+
+
+    public static Service get2Service(String baseUrl) {
+        return get2Retrofit(baseUrl).create(Service.class);
     }
 }
 

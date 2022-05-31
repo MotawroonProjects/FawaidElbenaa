@@ -66,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter adapter;
     private List<MessageModel> messageModelList;
     private boolean isDataChanged = false;
+    
 
 
     @Override

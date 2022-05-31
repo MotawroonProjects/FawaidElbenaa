@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fawaid_elbenaa.R;
 import com.fawaid_elbenaa.activities_fragments.activity_my_ads.MyAdsActivity;
+import com.fawaid_elbenaa.databinding.MyProductRowBinding;
 import com.fawaid_elbenaa.databinding.ProductRow2Binding;
 import com.fawaid_elbenaa.databinding.ProductRowBinding;
+import com.fawaid_elbenaa.generated.callback.OnClickListener;
 import com.fawaid_elbenaa.models.ProductModel;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class MyProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ProductRow2Binding binding = DataBindingUtil.inflate(inflater, R.layout.product_row2, parent, false);
+        MyProductRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.my_product_row, parent, false);
         return new MyHolder(binding);
 
     }
@@ -44,22 +46,28 @@ public class MyProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (holder instanceof MyHolder) {
             MyHolder myHolder = (MyHolder) holder;
             myHolder.binding.setModel(list.get(position));
-            myHolder.binding.tvOldPrice.setPaintFlags(myHolder.binding.tvOldPrice.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            myHolder.binding.tvOldPrice.setPaintFlags(myHolder.binding.tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             myHolder.itemView.setOnClickListener(view -> {
-                if (activity instanceof MyAdsActivity){
-                    MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
-                    myAdsActivity.setProductItemData(list.get(myHolder.getAdapterPosition()));
+                MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
+                myAdsActivity.setProductItemData(list.get(myHolder.getAdapterPosition()));
 
-                }
             });
 
             myHolder.binding.imageDelete.setOnClickListener(view -> {
                 MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
-                myAdsActivity.deleteAd(list.get(myHolder.getAdapterPosition()),myHolder.getAdapterPosition());
+                myAdsActivity.deleteAd(list.get(myHolder.getAdapterPosition()), myHolder.getAdapterPosition());
 
             });
 
+            myHolder.binding.tvAction.setOnClickListener(view -> {
+                MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
+                myAdsActivity.changeStatus(list.get(myHolder.getAdapterPosition()),myHolder.getAdapterPosition());
+            });
+            myHolder.binding.tvEdit.setOnClickListener(view -> {
+                MyAdsActivity myAdsActivity = (MyAdsActivity) activity;
+                myAdsActivity.edit(list.get(myHolder.getAdapterPosition()),myHolder.getAdapterPosition());
+            });
 
         }
 
@@ -71,9 +79,9 @@ public class MyProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        public ProductRow2Binding binding;
+        public MyProductRowBinding binding;
 
-        public MyHolder(@NonNull ProductRow2Binding binding) {
+        public MyHolder(@NonNull MyProductRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 

@@ -189,5 +189,9 @@ public class UserModel extends StatusResponse implements Serializable {
         public boolean isCan_post() {
             return can_post;
         }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
     }
 }

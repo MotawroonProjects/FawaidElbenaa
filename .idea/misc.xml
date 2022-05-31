@@ -82,10 +82,12 @@
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/small_stroke_primary.xml" value="0.2203125" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/splash_gradient.xml" value="0.2203125" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/drawable/tab_indicator.xml" value="0.2203125" />
-        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.28405797101449276" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.18" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_language.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_packages.xml" value="0.33" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_product_details.xml" value="0.225" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_splash.xml" value="0.22" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/activity_verification_code.xml" value="0.20416666666666666" />
@@ -94,9 +96,14 @@
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/catogry_row.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/catogry_row3.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_department.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_home.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_offer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/my_product_row.xml" value="0.25" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/notification_row.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/product_row2.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Arb Develpor/Desktop/emad/Projects/Fawaid Elbenaa/app/src/main/res/layout/slider_image.xml" value="0.1" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/drawable/ic_nav_notification.xml" value="0.2203125" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/drawable/msg_left_bg.xml" value="0.2203125" />
         <entry key="..\:/android/Projects/FawaidElbenaa/app/src/main/res/layout/activity_add_ads.xml" value="0.20416666666666666" />
@@ -125,7 +132,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

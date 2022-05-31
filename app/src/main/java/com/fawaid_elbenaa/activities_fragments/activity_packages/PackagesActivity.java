@@ -103,16 +103,17 @@ public class PackagesActivity extends AppCompatActivity {
         String days = "0";
         Calendar calendar = Calendar.getInstance();
         if(userModel.getData().getPackage_date()!=null){
+            Log.e("ddddd",userModel.getData().getPackage_date());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         try {
             Date expiredDate = format.parse(userModel.getData().getPackage_date());
             Date nowDate = calendar.getTime();
-            Log.e("date", expiredDate.toString() + "__" + expiredDate.getTime() + "___" + nowDate.toString() + "" + nowDate.getTime());
             if (expiredDate.getTime() > nowDate.getTime()) {
                 long daysMill = 1000 * 60 * 60 * 24;
                 long diff = expiredDate.getTime() - nowDate.getTime();
                 long d = diff / daysMill;
-                days = String.valueOf(d);
+                days = String.valueOf(d+1);
+
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -177,7 +178,7 @@ public class PackagesActivity extends AppCompatActivity {
     }
 
     private void payPackage() {
-
+Log.e("dldlld","Bearer " + userModel.getData().getToken());
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
@@ -195,7 +196,11 @@ public class PackagesActivity extends AppCompatActivity {
                             }
 
                         } else {
-
+                            try {
+                                Log.e("ttyyty",response.code()+"--"+response.errorBody().string());
+                            } catch (IOException e) {
+                               // e.printStackTrace();
+                            }
                             if (response.code() == 500) {
                                 //  Toast.makeText(VerificationCodeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                             } else {
@@ -288,6 +293,7 @@ Log.e(";llllll",e.toString());
     }
 
     private void updateData(UserModel body) {
+        body.getData().setToken(userModel.getData().getToken());
         userModel = body;
         binding.setDays(getDays());
 
