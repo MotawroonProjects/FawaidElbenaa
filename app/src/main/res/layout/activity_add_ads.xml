@@ -248,13 +248,11 @@
                             android:layout_height="200dp"
                             app:auto_show="false"
                             app:controller_layout_id="@layout/exoplayer_controler_ui"
-                            app:fastforward_increment="1500"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:played_color="@color/colorPrimary"
                             app:resize_mode="fill"
-                            app:rewind_increment="1500"
                             app:use_controller="true" />
 
                         <FrameLayout

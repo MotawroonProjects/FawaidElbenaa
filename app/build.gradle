@@ -37,6 +37,7 @@ android {
         maven { url "https://jitpack.io" }
 
     }
+    namespace 'com.fawaid_elbenaa'
 }
 
 dependencies {
@@ -75,6 +76,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
 apply plugin: 'com.google.gms.google-services'
