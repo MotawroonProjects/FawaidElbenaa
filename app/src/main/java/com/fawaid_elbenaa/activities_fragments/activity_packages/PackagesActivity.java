@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import com.fawaid_elbenaa.preferences.Preferences;
 import com.fawaid_elbenaa.remote.Api;
 import com.fawaid_elbenaa.share.Common;
 import com.fawaid_elbenaa.tags.Tags;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -99,25 +101,26 @@ public class PackagesActivity extends AppCompatActivity {
     }
 
     private String getDays() {
-     //   Log.e("ldldll",userModel.getData().getId()+"");
+        //   Log.e("ldldll",userModel.getData().getId()+"");
         String days = "0";
         Calendar calendar = Calendar.getInstance();
-        if(userModel.getData().getPackage_date()!=null){
-            Log.e("ddddd",userModel.getData().getPackage_date());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        try {
-            Date expiredDate = format.parse(userModel.getData().getPackage_date());
-            Date nowDate = calendar.getTime();
-            if (expiredDate.getTime() > nowDate.getTime()) {
-                long daysMill = 1000 * 60 * 60 * 24;
-                long diff = expiredDate.getTime() - nowDate.getTime();
-                long d = diff / daysMill;
-                days = String.valueOf(d+1);
+        if (userModel.getData().getPackage_date() != null) {
+            Log.e("ddddd", userModel.getData().getPackage_date());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            try {
+                Date expiredDate = format.parse(userModel.getData().getPackage_date());
+                Date nowDate = calendar.getTime();
+                if (expiredDate.getTime() > nowDate.getTime()) {
+                    long daysMill = 1000 * 60 * 60 * 24;
+                    long diff = expiredDate.getTime() - nowDate.getTime();
+                    long d = diff / daysMill;
+                    days = String.valueOf(d + 1);
 
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }}
+        }
         return days;
     }
 
@@ -178,7 +181,7 @@ public class PackagesActivity extends AppCompatActivity {
     }
 
     private void payPackage() {
-Log.e("dldlld","Bearer " + userModel.getData().getToken());
+        Log.e("dldlld", "Bearer " + userModel.getData().getToken());
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
@@ -189,17 +192,23 @@ Log.e("dldlld","Bearer " + userModel.getData().getToken());
                     public void onResponse(Call<InvoiceModel> call, Response<InvoiceModel> response) {
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
-                            if (response.body().isSuccess()) {
+
+
+                            if (response.body().isSuccess() && selectedPackage.getPrice() != 0) {
                                 Intent intent = new Intent(PackagesActivity.this, PayActivity.class);
                                 intent.putExtra("url", response.body().getData().getInvoiceURL());
                                 startActivityForResult(intent, 1);
+                            } else {
+                                Toast.makeText(PackagesActivity.this, getResources().getString(R.string.suc), Toast.LENGTH_LONG).show();
+                                getData();
                             }
 
                         } else {
+                            Log.e("ttyyty", response.code() + "");
                             try {
-                                Log.e("ttyyty",response.code()+"--"+response.errorBody().string());
+                                Log.e("ttyyty", response.code() + "--" + response.errorBody().string());
                             } catch (IOException e) {
-                               // e.printStackTrace();
+                                // e.printStackTrace();
                             }
                             if (response.code() == 500) {
                                 //  Toast.makeText(VerificationCodeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
@@ -288,7 +297,7 @@ Log.e("dldlld","Bearer " + userModel.getData().getToken());
                         }
                     });
         } catch (Exception e) {
-Log.e(";llllll",e.toString());
+            Log.e(";llllll", e.toString());
         }
     }
 
